@@ -244,6 +244,13 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
+\   'go': ['golint', 'go vet'],
+\}
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'json': ['prettier'],
+\   'go': ['golint', 'go vet'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 1
