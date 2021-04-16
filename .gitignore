@@ -1,0 +1,8 @@
+*
+
+!.gitignore
+!.vimrc
+!.coc-config.vim
+!.nerdtree-config.vim
+!.airline-config.vim
+
