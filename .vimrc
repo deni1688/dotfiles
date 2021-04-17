@@ -5,6 +5,7 @@ let g:vim_bootstrap_langs = "go,html,javascript,python,rust,typescript,markdown"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'vim-test/vim-test'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
@@ -16,8 +17,8 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
-Plug 'morhetz/gruvbox' 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                             
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
@@ -41,19 +42,21 @@ nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
-noremap <S-Right> :vertical resize +10<CR>
-noremap <S-Left> :vertical resize -10<CR>
+noremap <S-Right> :vertical resize +15<CR>
+noremap <S-Left> :vertical resize -15<CR>
 nmap gm :call cursor(0, virtcol('$')/2)<CR>noremap <S-Left> :vertical resize -10<CR>
 " Terminal settings
-set termwinsize=10x0 
+set termwinsize=10x0
 set splitbelow
-
+set foldmethod=indent
+set foldlevel=5
 "*****************************************************************************
 " Basic Setup
 "*****************************************************************************"
 let mapleader=','
 
 autocmd VimEnter * set signcolumn="4"
+
 syntax on
 colorscheme OceanicNext
 set backspace=indent,eol,start
@@ -111,7 +114,7 @@ let g:indentLine_faster = 1
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
 endif
-  
+
 if &term =~ '256color'
   set t_ut=
 endif
@@ -238,15 +241,9 @@ source <sfile>:h/.go-config.vim
 source <sfile>:h/.coc-config.vim
 
 
-let b:ale_fixers = {'javascript': ['eslint'], 'typescript': ['eslint'], 'json': ['prettier']}
+let b:ale_fixers = {'javascript': ['eslint'], 'typescript': ['eslint'], 'json': ['prettier'], 'go': ['golint', 'go vet']}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\   'json': ['prettier'],
-\   'go': ['golint', 'go vet'],
-\}
-let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
