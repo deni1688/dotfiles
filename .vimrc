@@ -44,6 +44,7 @@ inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
 noremap <S-Right> :vertical resize +15<CR>
 noremap <S-Left> :vertical resize -15<CR>
+noremap <silent><leader>s :update<CR>
 nmap gm :call cursor(0, virtcol('$')/2)<CR>noremap <S-Left> :vertical resize -10<CR>
 " Terminal settings
 set termwinsize=10x0
@@ -235,17 +236,36 @@ vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-source <sfile>:h/.nerdtree-config.vim
-source <sfile>:h/.airline-config.vim
-source <sfile>:h/.go-config.vim
-source <sfile>:h/.coc-config.vim
 
-
-let b:ale_fixers = {'javascript': ['eslint'], 'typescript': ['eslint'], 'json': ['prettier'], 'go': ['golint', 'go vet']}
+let g:ale_linters = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
+\   'typescript': ['eslint'],
+\   'json': ['prettier'],
+\   'go': ['golint', 'go vet'],
+\}
+let b:ale_linters = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
+\   'typescript': ['eslint'],
+\   'json': ['prettier'],
+\   'go': ['golint', 'go vet'],
+\}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
 \   'typescript': ['eslint'],
+\   'json': ['prettier'],
+\   'go': ['golint', 'go vet'],
+\}
+let b:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'jsx': ['eslint'],
 \   'json': ['prettier'],
 \   'go': ['golint', 'go vet'],
 \}
@@ -254,3 +274,8 @@ let g:ale_completion_autoimport = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+
+source <sfile>:h/.nerdtree-config.vim
+source <sfile>:h/.airline-config.vim
+source <sfile>:h/.go-config.vim
+source <sfile>:h/.coc-config.vim
