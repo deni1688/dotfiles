@@ -1,9 +1,9 @@
 *
 
-!.gitignore
-!.vimrc
+!.airline-config.vim
+!.ale-config.vim
 !.coc-config.vim
+!.gitignore
 !.go-config.vim
 !.nerdtree-config.vim
-!.airline-config.vim
-
+!.vimrc
