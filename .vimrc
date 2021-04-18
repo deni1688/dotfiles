@@ -19,6 +19,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
+Plug 'francoiscabrol/ranger.vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -33,7 +34,7 @@ inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
 noremap <S-Right> :vertical resize +15<CR>
 noremap <S-Left> :vertical resize -15<CR>
-noremap <silent> <leader>s :update<CR>
+noremap <leader>s :update<CR>
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 " Terminal settings
 set termwinsize=10x0
@@ -169,7 +170,8 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>ff :Files<CR>
-nnoremap <silent> <leader>ft :Rg <CR>
+nnoremap <silent> <leader>ft :Rg<CR>
+nnoremap <expr> <leader>fs ':Rg '.expand('<cword>').'<cr>'
 
 "Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
@@ -218,3 +220,37 @@ source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
 source <sfile>:h/.coc-config.vim
 source <sfile>:h/.ale-config.vim
+
+function! s:update_fzf_colors()
+  let rules =
+  \ { 'fg':      [['Normal',       'fg']],
+    \ 'bg':      [['Normal',       'bg']],
+    \ 'hl':      [['Comment',      'fg']],
+    \ 'fg+':     [['CursorColumn', 'fg'], ['Normal', 'fg']],
+    \ 'bg+':     [['CursorColumn', 'bg']],
+    \ 'hl+':     [['Statement',    'fg']],
+    \ 'info':    [['PreProc',      'fg']],
+    \ 'prompt':  [['Conditional',  'fg']],
+    \ 'pointer': [['Exception',    'fg']],
+    \ 'marker':  [['Keyword',      'fg']],
+    \ 'spinner': [['Label',        'fg']],
+    \ 'header':  [['Comment',      'fg']] }
+  let cols = []
+  for [name, pairs] in items(rules)
+    for pair in pairs
+      let code = synIDattr(synIDtrans(hlID(pair[0])), pair[1])
+      if !empty(name) && code > 0
+        call add(cols, name.':'.code)
+        break
+      endif
+    endfor
+  endfor
+  let s:orig_fzf_default_opts = get(s:, 'orig_fzf_default_opts', $FZF_DEFAULT_OPTS)
+  let $FZF_DEFAULT_OPTS = s:orig_fzf_default_opts .
+        \ empty(cols) ? '' : (' --color='.join(cols, ','))
+endfunction
+
+augroup _fzf
+  autocmd!
+  autocmd ColorScheme * call <sid>update_fzf_colors()
+augroup END
