@@ -38,21 +38,20 @@ noremap <S-Right> :vertical resize +15<CR>
 noremap <S-Left> :vertical resize -15<CR>
 noremap <leader>s :update<CR>
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
-" Terminal settings
-set termwinsize=10x0
-set splitbelow
-"*****************************************************************************
-" Basic Setup
-"*****************************************************************************"
-let mapleader=','
 
-autocmd VimEnter * set signcolumn="4"
+" Terminal settings
+let mapleader=','
 
 syntax on
 colorscheme OceanicNext
-set bg=dark
+set guicursor=i:ver25-iCursor
+set termwinsize=10x0
+set splitbelow
 set backspace=indent,eol,start
+set bg=dark
+set cmdheight=2
 set encoding=utf-8
+set expandtab
 set fileencoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
@@ -67,38 +66,37 @@ set laststatus=2
 set modeline
 set modelines=10
 set mousemodel=popup
+set nobackup
 set noswapfile
+set nowritebackup
 set number
 set ruler
 set scrolloff=3
-set tabstop=4
 set shiftwidth=4
+set shortmess+=c
+set signcolumn=yes
 set smartcase
-set expandtab
+set smartindent
 set softtabstop=0
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set t_Co=256
+set tabstop=4
 set title
 set titleold="Terminal"
 set titlestring=%F
 set ttyfast
-set smartindent
+set updatetime=300
+
 
 if exists('$SHELL')
     set shell=$SHELL
 else
     set shell=/bin/sh
 endif
+
 filetype plugin indent on
 
-" session management
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-
 let no_buffers_menu=1
-
 let g:indentLine_enabled = 1
 let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
@@ -138,10 +136,10 @@ noremap <leader>gb :Gblame<CR>
 noremap <leader>gd :Gvdiff<CR>
 noremap <leader>gr :Gremove<CR>
 
-"" Tabs
+"" buffer nav
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
-nnoremap <s>t :tabnew<CR>
+noremap <leader>c :bd<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -156,16 +154,10 @@ noremap <leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 set wildmode=list:longest,list:full
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
-" " ripgrep
-" if executable('rg')
-"   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-"   set grepprg=rg\ --vimgrep
-"   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-" endif
 
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+cnoremap <c-p> <c-r>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>ff :Files<CR>
 nnoremap <silent> <leader>ft :Rg<CR>
@@ -187,14 +179,8 @@ endif
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
-"" Buffer
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
 
 "" Close buffer
-noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
