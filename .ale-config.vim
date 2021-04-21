@@ -1,4 +1,4 @@
-let g:ale_linters = {
+let aleLinterConfig = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'javascriptreact': ['eslint'],
@@ -6,38 +6,12 @@ let g:ale_linters = {
 \   'jsx': ['eslint'],
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
-\   'go': ['golint', 'go vet'],
+\   'go': ['gofmt'],
 \}
-let b:ale_linters = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'javascriptreact': ['eslint'],
-\   'typescriptreact': ['eslint'],
-\   'jsx': ['eslint'],
-\   'typescript': ['eslint'],
-\   'json': ['prettier'],
-\   'go': ['golint', 'go vet'],
-\}
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'javascriptreact': ['eslint'],
-\   'typescriptreact': ['eslint'],
-\   'jsx': ['eslint'],
-\   'typescript': ['eslint'],
-\   'json': ['prettier'],
-\   'go': ['golint', 'go vet'],
-\}
-let b:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'javascriptreact': ['eslint'],
-\   'typescriptreact': ['eslint'],
-\   'typescript': ['eslint'],
-\   'jsx': ['eslint'],
-\   'json': ['prettier'],
-\   'go': ['golint', 'go vet'],
-\}
+let g:ale_linters = aleLinterConfig
+let g:ale_fixers = aleLinterConfig
+let b:ale_linters = aleLinterConfig
+let b:ale_fixers = aleLinterConfig
 let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 1
 let g:ale_sign_column_always = 1
