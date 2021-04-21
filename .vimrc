@@ -41,7 +41,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 let mapleader=','
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
-colorscheme OceanicNext
+colorscheme gruvbox
 set conceallevel=2
 set termwinsize=10x0
 set splitbelow
