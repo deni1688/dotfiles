@@ -42,6 +42,7 @@ let mapleader=','
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
 colorscheme OceanicNext
+set conceallevel=2
 set termwinsize=10x0
 set splitbelow
 set backspace=indent,eol,start
