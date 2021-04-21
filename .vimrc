@@ -1,8 +1,5 @@
 let g:ale_disable_lsp = 1
-let g:vim_bootstrap_langs = "go,html,javascript,python,rust,typescript,markdown"
-let g:vim_bootstrap_editor = "vim"
-let g:markdown_enable_folding = 1
-
+let g:vim_markdown_folding_disabled = 1
 call plug#begin(expand('~/.vim/plugged'))
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
@@ -18,10 +15,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'gabrielelana/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'francoiscabrol/ranger.vim'
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -41,58 +39,42 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Terminal settings
 let mapleader=','
-
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
 colorscheme OceanicNext
-set guicursor=i:ver25-iCursor
 set termwinsize=10x0
 set splitbelow
 set backspace=indent,eol,start
 set bg=dark
-set cmdheight=2
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
-set fileencodings=utf-8
 set fileformats=unix,dos,mac
 set gcr=a:blinkon0
-set gfn=Monospace\ 10
-set guioptions=egmrti
 set hidden
 set hlsearch
 set ignorecase
 set incsearch
-set laststatus=2
-set modeline
-set modelines=10
 set mousemodel=popup
 set nobackup
 set noswapfile
 set nowritebackup
 set number
 set ruler
-set scrolloff=3
+set scrolloff=6
 set shiftwidth=4
 set shortmess+=c
 set signcolumn=yes
 set smartcase
 set smartindent
 set softtabstop=0
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set t_Co=256
 set tabstop=4
 set title
 set titleold="Terminal"
 set titlestring=%F
 set ttyfast
-set updatetime=300
-
-
-if exists('$SHELL')
-    set shell=$SHELL
-else
-    set shell=/bin/sh
-endif
+set updatetime=200
 
 filetype plugin indent on
 
@@ -153,9 +135,9 @@ noremap <leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 "" fzf.vim
 set wildmode=list:longest,list:full
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
-
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+
+
 
 cnoremap <c-p> <c-r>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
@@ -179,8 +161,6 @@ endif
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
-
-"" Close buffer
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>

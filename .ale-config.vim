@@ -1,6 +1,8 @@
 let g:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \   'jsx': ['eslint'],
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
@@ -9,6 +11,8 @@ let g:ale_linters = {
 let b:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \   'jsx': ['eslint'],
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
@@ -17,6 +21,8 @@ let b:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \   'jsx': ['eslint'],
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
@@ -25,6 +31,8 @@ let g:ale_fixers = {
 let b:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \   'typescript': ['eslint'],
 \   'jsx': ['eslint'],
 \   'json': ['prettier'],
