@@ -1,5 +1,6 @@
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
+
 call plug#begin(expand('~/.vim/plugged'))
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
@@ -22,7 +23,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/limelight.vim'
+
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
