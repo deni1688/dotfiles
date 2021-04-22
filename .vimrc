@@ -5,9 +5,12 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
+Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
+Plug 'glepnir/oceanic-material'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
@@ -41,7 +44,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 let mapleader=','
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
-colorscheme gruvbox
+colorscheme oceanic_material
 set conceallevel=2
 set termwinsize=10x0
 set splitbelow
