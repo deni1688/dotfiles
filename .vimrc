@@ -80,6 +80,7 @@ set titleold="Terminal"
 set titlestring=%F
 set ttyfast
 set updatetime=200
+set nohlsearch
 
 filetype plugin indent on
 
