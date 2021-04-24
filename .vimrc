@@ -6,9 +6,12 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
+Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
+Plug 'glepnir/oceanic-material'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
@@ -42,7 +45,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 let mapleader=','
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
-colorscheme gruvbox
+colorscheme oceanic_material
 set conceallevel=2
 set termwinsize=10x0
 set splitbelow
@@ -77,6 +80,18 @@ set titleold="Terminal"
 set titlestring=%F
 set ttyfast
 set updatetime=200
+set nohlsearch
+
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+\ if v:insertmode == 'i' |
+\   silent execute '!echo -ne "\e[6 q"' | redraw! |
+\ elseif v:insertmode == 'r' |
+\   silent execute '!echo -ne "\e[4 q"' | redraw! |
+\ endif
+au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
 
 filetype plugin indent on
 
