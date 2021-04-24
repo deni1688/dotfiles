@@ -184,5 +184,5 @@ vnoremap K :m '<-2<CR>gv=gv
 source <sfile>:h/.nerdtree-config.vim
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
-source <sfile>:h/.coc-config.vim
 source <sfile>:h/.ale-config.vim
+source <sfile>:h/.coc-config.vim
