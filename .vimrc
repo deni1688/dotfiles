@@ -6,12 +6,9 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
-Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'
-Plug 'mhartington/oceanic-next'
-Plug 'glepnir/oceanic-material'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
@@ -21,6 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 
@@ -38,19 +36,18 @@ inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
 noremap <S-Right> :vertical resize +15<CR>
 noremap <S-Left> :vertical resize -15<CR>
-noremap <leader>s :update<CR>
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Terminal settings
 let mapleader=','
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
-colorscheme oceanic_material
+colorscheme onedark
+set background=dark
 set conceallevel=2
 set termwinsize=10x0
 set splitbelow
 set backspace=indent,eol,start
-set bg=dark
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
