@@ -2,25 +2,20 @@ let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 
 call plug#begin(expand('~/.vim/plugged'))
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
-Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
-Plug 'francoiscabrol/ranger.vim'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+Plug 'francoiscabrol/ranger.vim'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -40,7 +35,6 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Terminal settings
 let mapleader=','
-au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 syntax on
 colorscheme onedark
 set background=dark
@@ -73,11 +67,14 @@ set softtabstop=0
 set t_Co=256
 set tabstop=4
 set title
-set titleold="Terminal"
 set titlestring=%F
 set ttyfast
 set updatetime=200
 set nohlsearch
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+
+filetype plugin indent on
 
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
@@ -90,7 +87,6 @@ if has("autocmd")
 au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
 
-filetype plugin indent on
 
 let no_buffers_menu=1
 let g:indentLine_enabled = 1
@@ -137,35 +133,12 @@ nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
 noremap <leader>c :bd<CR>
 
-"" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-"" Opens an edit command with the path of the currently edited file filled in
-noremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-"" Opens a tab edit command with the path of the currently edited file filled
-noremap <leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
 "" fzf.vim
-set wildmode=list:longest,list:full
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 
-
-
-cnoremap <c-p> <c-r>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>fb :Buffers<CR>
-nnoremap <silent> <leader>ff :Files<CR>
-nnoremap <silent> <leader>ft :Rg<CR>
-nnoremap <expr> <leader>fs ':Rg '.expand('<cword>').'<cr>'
-
-"Recovery commands from history through FZF
-nmap <leader>y :History:<CR>
-
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-f> :Rg<CR>
+nnoremap <silent> <C-r> :Ranger<CR>
 " Disable visualbell
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -173,27 +146,18 @@ if has('autocmd')
 endif
 
 noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
-
-"" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
+noremap XX "+p<CR>
 
 "" Switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
+noremap <C-Down> <C-w>j
+noremap <C-Up> <C-w>k
+noremap <C-Right> <C-w>l
+noremap <C-Left> <C-w>h
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
 
-"" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-source <sfile>:h/.nerdtree-config.vim
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
 source <sfile>:h/.ale-config.vim
