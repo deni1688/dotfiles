@@ -29,8 +29,8 @@ nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
-noremap <S-Right> :vertical resize +15<CR>
-noremap <S-Left> :vertical resize -15<CR>
+noremap <silent> <S-Right> :vertical resize +15<CR>
+noremap <silent><S-Left> :vertical resize -15<CR>
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Terminal settings
@@ -38,10 +38,8 @@ let mapleader=','
 syntax on
 colorscheme onedark
 set background=dark
-set conceallevel=2
-set termwinsize=10x0
-set splitbelow
 set backspace=indent,eol,start
+set conceallevel=2
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
@@ -53,6 +51,7 @@ set ignorecase
 set incsearch
 set mousemodel=popup
 set nobackup
+set nohlsearch
 set noswapfile
 set nowritebackup
 set number
@@ -64,15 +63,16 @@ set signcolumn=yes
 set smartcase
 set smartindent
 set softtabstop=0
+set splitbelow
 set t_Co=256
 set tabstop=4
+set termwinsize=10x0
 set title
 set titlestring=%F
 set ttyfast
 set updatetime=200
-set nohlsearch
-set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+set wildmode=list:longest,list:full
 
 filetype plugin indent on
 
@@ -86,7 +86,6 @@ if has("autocmd")
 \ endif
 au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
-
 
 let no_buffers_menu=1
 let g:indentLine_enabled = 1
@@ -156,6 +155,7 @@ noremap <C-Left> <C-w>h
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
+
 vmap > >gv
 
 source <sfile>:h/.airline-config.vim
