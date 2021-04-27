@@ -3,6 +3,7 @@ let g:vim_markdown_folding_disabled = 1
 
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'Raimondi/delimitMate'
+Plug 'preservim/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
@@ -14,8 +15,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
+Plug 'arzg/vim-colors-xcode'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-Plug 'francoiscabrol/ranger.vim'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -37,7 +38,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 let mapleader=','
 syntax on
 filetype plugin indent on
-colorscheme onedark
+colorscheme xcodedark
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
@@ -96,11 +97,11 @@ endif
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
-  if v:insertmode == 'i' |
-    silent execute '!echo -ne "\e[6 q"' | redraw! |
-  elseif v:insertmode == 'r' |
-    silent execute '!echo -ne "\e[4 q"' | redraw! |
-  endif
+\ if v:insertmode == 'i' |
+\   silent execute '!echo -ne "\e[6 q"' | redraw! |
+\ elseif v:insertmode == 'r' |
+\   silent execute '!echo -ne "\e[4 q"' | redraw! |
+\ endif
 au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
 
@@ -136,13 +137,12 @@ noremap <leader>gr :Gremove<CR>
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
 noremap <leader>c :bd<CR>
-
 "" fzf.vim
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
-nnoremap <silent> <C-r> :Ranger<CR>
+nnoremap <silent> <F4> :TagbarToggle<CR>
 
 noremap YY "+y<CR>
 noremap XX "+p<CR>
@@ -158,3 +158,5 @@ source <sfile>:h/.go-config.vim
 source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
+
+map <C-s> <Esc>:w <CR>
