@@ -36,6 +36,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 " Terminal settings
 let mapleader=','
 syntax on
+filetype plugin indent on
 colorscheme onedark
 set background=dark
 set backspace=indent,eol,start
@@ -74,16 +75,31 @@ set updatetime=200
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
 
-filetype plugin indent on
+if $COLORTERM == 'gnome-terminal'
+  set term=gnome-256color
+endif
+
+if &term =~ '256color'
+  set t_ut=
+endif
+
+if exists("*fugitive#statusline")
+  set statusline+=%{fugitive#statusline()}
+endif
+
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
 
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
-\ if v:insertmode == 'i' |
-\   silent execute '!echo -ne "\e[6 q"' | redraw! |
-\ elseif v:insertmode == 'r' |
-\   silent execute '!echo -ne "\e[4 q"' | redraw! |
-\ endif
+  if v:insertmode == 'i' |
+    silent execute '!echo -ne "\e[6 q"' | redraw! |
+  elseif v:insertmode == 'r' |
+    silent execute '!echo -ne "\e[4 q"' | redraw! |
+  endif
 au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
 
@@ -93,22 +109,10 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 
-if $COLORTERM == 'gnome-terminal'
-  set term=gnome-256color
-endif
-
-if &term =~ '256color'
-  set t_ut=
-endif
-
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
-if exists("*fugitive#statusline")
-  set statusline+=%{fugitive#statusline()}
-endif
 
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
@@ -138,11 +142,6 @@ let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 nnoremap <silent> <C-r> :Ranger<CR>
-" Disable visualbell
-set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
 
 noremap YY "+y<CR>
 noremap XX "+p<CR>
@@ -152,11 +151,6 @@ noremap <C-Down> <C-w>j
 noremap <C-Up> <C-w>k
 noremap <C-Right> <C-w>l
 noremap <C-Left> <C-w>h
-
-"" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-
-vmap > >gv
 
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
