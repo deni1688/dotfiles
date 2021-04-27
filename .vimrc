@@ -16,7 +16,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'francoiscabrol/ranger.vim'
-
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -51,6 +51,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set mousemodel=popup
+set mouse=a
 set nobackup
 set nohlsearch
 set noswapfile
@@ -156,3 +157,4 @@ source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
 source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
+source <sfile>:h/.nerdtree-config.vim

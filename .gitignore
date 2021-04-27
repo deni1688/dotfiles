@@ -3,6 +3,7 @@
 !.airline-config.vim
 !.ale-config.vim
 !.coc-config.vim
+!.nerdtree-config.vim
 !.gitignore
 !.go-config.vim
 !.vimrc
