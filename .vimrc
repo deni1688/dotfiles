@@ -153,4 +153,4 @@ source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
 
-map <C-s> <Esc>:w <CR>
+nnoremap <silent> <leader>w <Esc>:w <CR>
