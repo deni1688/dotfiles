@@ -35,7 +35,7 @@ noremap <silent><S-Left> :vertical resize -15<CR>
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Terminal settings
-let mapleader=','
+let mapleader=' '
 syntax on
 filetype plugin indent on
 colorscheme xcodedark
