@@ -91,19 +91,21 @@ endif
 
 set noerrorbells visualbell t_vb=
 if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
 endif
 
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+  au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  au GUIEnter * set visualbell t_vb=
 \ if v:insertmode == 'i' |
 \   silent execute '!echo -ne "\e[6 q"' | redraw! |
 \ elseif v:insertmode == 'r' |
 \   silent execute '!echo -ne "\e[4 q"' | redraw! |
 \ endif
-au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
+
 
 let no_buffers_menu=1
 let g:indentLine_enabled = 1
