@@ -76,6 +76,8 @@ set ttyfast
 set updatetime=200
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
+set noerrorbells visualbell t_vb=
+set visualbell t_vb=
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -89,23 +91,18 @@ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
 
-set noerrorbells visualbell t_vb=
-if has('autocmd')
-endif
-
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-  au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-  au GUIEnter * set visualbell t_vb=
 \ if v:insertmode == 'i' |
 \   silent execute '!echo -ne "\e[6 q"' | redraw! |
 \ elseif v:insertmode == 'r' |
 \   silent execute '!echo -ne "\e[4 q"' | redraw! |
 \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
 
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
 let no_buffers_menu=1
 let g:indentLine_enabled = 1
