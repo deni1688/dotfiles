@@ -135,6 +135,7 @@ noremap <leader>c :bd<CR>
 "" fzf.vim
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
+nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 nnoremap <silent> <F4> :TagbarToggle<CR>
@@ -148,10 +149,16 @@ noremap <C-Up> <C-w>k
 noremap <C-Right> <C-w>l
 noremap <C-Left> <C-w>h
 
+vmap < <gv
+vmap > >gv
+
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <silent> <leader>w <Esc>:w <CR>
+
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
 source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
-
-nnoremap <silent> <leader>w <Esc>:w <CR>
