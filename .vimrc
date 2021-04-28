@@ -16,6 +16,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 Plug 'arzg/vim-colors-xcode'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 if isdirectory('/usr/local/opt/fzf')
@@ -38,7 +39,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 let mapleader=' '
 syntax on
 filetype plugin indent on
-colorscheme xcodedarkhc
+colorscheme PaperColor
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
