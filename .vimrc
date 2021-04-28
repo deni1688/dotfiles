@@ -38,7 +38,7 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 let mapleader=' '
 syntax on
 filetype plugin indent on
-colorscheme xcodedark
+colorscheme xcodedarkhc
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
