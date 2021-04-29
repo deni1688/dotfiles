@@ -2,6 +2,7 @@ let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'janko-m/vim-test'
 Plug 'Raimondi/delimitMate'
 Plug 'preservim/tagbar'
 Plug 'airblade/vim-gitgutter'
@@ -27,6 +28,7 @@ else
 endif
 call plug#end()
 
+nnoremap <leader>t :TestNearest 
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
