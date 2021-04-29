@@ -140,21 +140,26 @@ nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
-noremap YY "+y<CR>
-noremap XX "+p<CR>
-
 "" Switching windows
 noremap <C-Down> <C-w>j
 noremap <C-Up> <C-w>k
 noremap <C-Right> <C-w>l
 noremap <C-Left> <C-w>h
 
-vmap < <gv
-vmap > >gv
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+vmap < <gv
+vmap > >gv
+
+"" Copy/Past from clipboard
+noremap <Leader>y "*y<CR>
+noremap <Leader>p "*p<CR>
+noremap <Leader>Y "+y<CR>
+noremap <Leader>P "+p<CR>
+
+"" Saving faster
 nnoremap <silent> <leader>w <Esc>:w <CR>
 
 source <sfile>:h/.airline-config.vim
