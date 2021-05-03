@@ -28,7 +28,7 @@ else
 endif
 call plug#end()
 
-nnoremap <leader>t :TestNearest 
+nnoremap <leader>tt :TestNearest 
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
