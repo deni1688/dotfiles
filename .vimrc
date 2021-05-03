@@ -156,8 +156,8 @@ vmap < <gv
 vmap > >gv
 
 "" Copy/Past from clipboard
-noremap <Leader>y "*y<CR>
-noremap <Leader>p "*p<CR>
+noremap <Leader>y "+y<CR>
+noremap <Leader>p "+p<CR>
 noremap <Leader>Y "+y<CR>
 noremap <Leader>P "+p<CR>
 
@@ -169,3 +169,7 @@ source <sfile>:h/.go-config.vim
 source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
+" transparent bg
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" For Vim<8, replace EndOfBuffer by NonText
+autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
