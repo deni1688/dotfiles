@@ -28,14 +28,6 @@ else
 endif
 call plug#end()
 
-nnoremap <leader>tt :TestNearest 
-nnoremap <S-Up> :m-2<CR>
-nnoremap <S-Down> :m+<CR>
-inoremap <S-Up> <Esc>:m-2<CR>
-inoremap <S-Down> <Esc>:m+<CR>
-noremap <silent> <S-Right> :vertical resize +15<CR>
-noremap <silent><S-Left> :vertical resize -15<CR>
-nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Terminal settings
 let mapleader=' '
@@ -81,6 +73,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
 set noerrorbells visualbell t_vb=
 set visualbell t_vb=
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -94,18 +87,6 @@ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
 
-if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-\ if v:insertmode == 'i' |
-\   silent execute '!echo -ne "\e[6 q"' | redraw! |
-\ elseif v:insertmode == 'r' |
-\   silent execute '!echo -ne "\e[4 q"' | redraw! |
-\ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
-
-au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
 let no_buffers_menu=1
 let g:indentLine_enabled = 1
@@ -113,7 +94,76 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 
-" terminal emulation
+"" fzf.vim
+" let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+source <sfile>:h/.airline-config.vim
+source <sfile>:h/.go-config.vim
+source <sfile>:h/.ale-config.vim
+source <sfile>:h/.coc-config.vim
+source <sfile>:h/.nerdtree-config.vim
+
+augroup ROOT
+    autocmd!
+    " Line cursor redraw
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' |
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    " transparent bg
+    au vimenter * hi Normal guibg=NONE ctermbg=NONE
+    au vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+    " set markdown on md file type
+    au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+augroup END
+
+"" Line movement
+inoremap <S-Down> <Esc>:m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+nnoremap <S-Down> :m+<CR>
+nnoremap <S-Up> :m-2<CR>
+
+"" Vim test
+nnoremap <leader>tt :TestNearest
+
+"" Move to middle of line
+nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
+
+"" Vertical window resize
+noremap <silent> <S-Right> :vertical resize +15<CR>
+noremap <silent><S-Left> :vertical resize -15<CR>
+
+"" Copy/Past from clipboard
+noremap <Leader>y "+y<CR>
+noremap <Leader>p "+p<CR>
+noremap <Leader>Y "+y<CR>
+noremap <Leader>P "+p<CR>
+
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap < <gv
+vnoremap > >gv
+
+"" FZF
+nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <C-p> :FZF -m<CR>
+nnoremap <silent> <C-f> :Rg<CR>
+
+"" Tags
+nnoremap <silent> <F4> :TagbarToggle<CR>
+
+"" Switching windows
+noremap <C-Down> <C-w>j
+noremap <C-Up> <C-w>k
+noremap <C-Right> <C-w>l
+noremap <C-Left> <C-w>h
+
+"" Terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
 
 "" Split
@@ -130,46 +180,10 @@ noremap <leader>gb :Gblame<CR>
 noremap <leader>gd :Gvdiff<CR>
 noremap <leader>gr :Gremove<CR>
 
-"" buffer nav
+"" Buffer nav
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
-noremap <leader>c :bd<CR>
-"" fzf.vim
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
-nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-f> :Rg<CR>
-nnoremap <silent> <F4> :TagbarToggle<CR>
-
-"" Switching windows
-noremap <C-Down> <C-w>j
-noremap <C-Up> <C-w>k
-noremap <C-Right> <C-w>l
-noremap <C-Left> <C-w>h
-
-
-"" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-vmap < <gv
-vmap > >gv
-
-"" Copy/Past from clipboard
-noremap <Leader>y "+y<CR>
-noremap <Leader>p "+p<CR>
-noremap <Leader>Y "+y<CR>
-noremap <Leader>P "+p<CR>
+nnoremap <leader>c :bd<CR>
 
 "" Saving faster
 nnoremap <silent> <leader>w <Esc>:w <CR>
-
-source <sfile>:h/.airline-config.vim
-source <sfile>:h/.go-config.vim
-source <sfile>:h/.ale-config.vim
-source <sfile>:h/.coc-config.vim
-source <sfile>:h/.nerdtree-config.vim
-" transparent bg
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-" For Vim<8, replace EndOfBuffer by NonText
-autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE

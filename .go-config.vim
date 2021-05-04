@@ -25,8 +25,6 @@ let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
 
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-
 augroup completion_preview_close
   autocmd!
   if v:version > 703 || v:version == 703 && has('patch598')
@@ -59,4 +57,3 @@ augroup go
   au FileType go nmap <Leader>f :GoFmt<cr>
 
 augroup END
-
