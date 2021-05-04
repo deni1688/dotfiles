@@ -1,5 +1,11 @@
+let mapleader=' '
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
+let no_buffers_menu=1
+let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = 0
+let g:indentLine_char = '┆'
+let g:indentLine_faster = 1
 
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'janko-m/vim-test'
@@ -28,9 +34,7 @@ else
 endif
 call plug#end()
 
-
 " Terminal settings
-let mapleader=' '
 syntax on
 filetype plugin indent on
 colorscheme PaperColor
@@ -88,14 +92,6 @@ if exists("*fugitive#statusline")
 endif
 
 
-let no_buffers_menu=1
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = 0
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
-
-"" fzf.vim
-" let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
@@ -151,7 +147,7 @@ vnoremap > >gv
 
 "" FZF
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-p> :FZF -m<CR>
+nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 
 "" Tags
