@@ -91,8 +91,6 @@ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
 
-
-
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
 source <sfile>:h/.ale-config.vim
@@ -147,6 +145,7 @@ vnoremap > >gv
 
 "" FZF
 nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <C-l> :Lines<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 
