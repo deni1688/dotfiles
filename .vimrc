@@ -7,7 +7,7 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
-let g:gruvbox_material_background = "hard"
+let g:gruvbox_material_background = "soft"
 let g:gruvbox_material_palette = "material"
 
 call plug#begin(expand('~/.vim/plugged'))
