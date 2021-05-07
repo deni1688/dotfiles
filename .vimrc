@@ -47,18 +47,21 @@ colorscheme gruvbox-material
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
+set cursorline
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
 set fileformats=unix,dos,mac
 set gcr=a:blinkon0
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 set hidden
 set hlsearch
 set ignorecase
 set incsearch
-set mousemodel=popup
 set mouse=a
+set mousemodel=popup
 set nobackup
+set noerrorbells visualbell t_vb=
 set nohlsearch
 set noswapfile
 set nowritebackup
@@ -79,11 +82,9 @@ set title
 set titlestring=%F
 set ttyfast
 set updatetime=200
+set visualbell t_vb=
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
-set noerrorbells visualbell t_vb=
-set visualbell t_vb=
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
