@@ -7,9 +7,7 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
-let g:gruvbox_material_background = "soft"
-let g:gruvbox_material_palette = "material"
-
+let $BAT_THEME='OneHalfLight'
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'janko-m/vim-test'
 Plug 'SirVer/ultisnips'
@@ -28,6 +26,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'arzg/vim-colors-xcode'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/gruvbox-material'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
@@ -43,8 +42,9 @@ call plug#end()
 " Terminal settings
 syntax on
 filetype plugin indent on
-colorscheme gruvbox-material
-set background=dark
+colorscheme onehalflight
+
+set background=light
 set backspace=indent,eol,start
 set conceallevel=2
 set cursorline
@@ -115,10 +115,7 @@ augroup ROOT
     \   silent execute '!echo -ne "\e[4 q"' | redraw! |
     \ endif
     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    " transparent bg
-    au vimenter * hi Normal guibg=NONE ctermbg=NONE
-    au vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
-    " set markdown on md file type
+       " set markdown on md file type
     au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
