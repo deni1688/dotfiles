@@ -1,4 +1,4 @@
-let mapleader=' '
+let mapleader=','
 let no_buffers_menu=1
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
