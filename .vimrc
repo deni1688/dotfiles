@@ -67,7 +67,6 @@ set nohlsearch
 set noswapfile
 set nowritebackup
 set number
-set relativenumber
 set ruler
 set scrolloff=6
 set shiftwidth=4
