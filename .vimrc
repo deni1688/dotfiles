@@ -7,30 +7,31 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
-let $BAT_THEME='OneHalfLight'
+
+let $BAT_THEME='base64'
+
 call plug#begin(expand('~/.vim/plugged'))
-Plug 'janko-m/vim-test'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'Raimondi/delimitMate'
-Plug 'preservim/tagbar'
+Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
+Plug 'arzg/vim-colors-xcode'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+Plug 'honza/vim-snippets'
+Plug 'janko-m/vim-test'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'preservim/tagbar'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'arzg/vim-colors-xcode'
-Plug 'ryanoasis/vim-devicons'
-Plug 'joshdick/onedark.vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'sainnhe/gruvbox-material'
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -42,9 +43,9 @@ call plug#end()
 " Terminal settings
 syntax on
 filetype plugin indent on
-colorscheme onehalflight
+colorscheme gruvbox
 
-set background=light
+set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
 set cursorline
@@ -66,6 +67,7 @@ set nohlsearch
 set noswapfile
 set nowritebackup
 set number
+set relativenumber
 set ruler
 set scrolloff=6
 set shiftwidth=4
