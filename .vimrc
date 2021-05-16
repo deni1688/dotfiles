@@ -82,12 +82,12 @@ set termwinsize=10x0
 set title
 set titlestring=%F
 set ttyfast
+set undodir=~/.vim/undo
+set undofile
 set updatetime=200
 set visualbell t_vb=
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
-set undofile
-set undodir=~/.vim/undo
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -148,6 +148,7 @@ nnoremap <silent> <C-f> :Rg<CR>
 
 "" Tags
 nnoremap <silent> <F4> :TagbarToggle<CR>
+nnoremap <silent> <F5> :MundoToggle<CR>
 
 "" Switching windows
 noremap <C-Down> <C-w>j
