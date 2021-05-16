@@ -43,7 +43,7 @@ call plug#end()
 
 syntax on
 filetype plugin indent on
-colorscheme gruvbox
+colorscheme PaperColor
 
 set background=dark
 set backspace=indent,eol,start
@@ -182,3 +182,4 @@ nnoremap <leader>c :bd<CR>
 nnoremap <silent> <leader>w <Esc>:w <CR>
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
+hi Normal guibg=NONE ctermbg=NONE
