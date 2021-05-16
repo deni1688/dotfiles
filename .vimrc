@@ -41,7 +41,6 @@ else
 endif
 call plug#end()
 
-" Terminal settings
 syntax on
 filetype plugin indent on
 colorscheme gruvbox
