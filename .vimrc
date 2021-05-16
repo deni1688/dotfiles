@@ -130,10 +130,10 @@ noremap <silent> <S-Right> :vertical resize +15<CR>
 noremap <silent><S-Left> :vertical resize -15<CR>
 
 "" Copy/Past from clipboard
-noremap <Leader>y "+y<CR>
-noremap <Leader>p "+p<CR>
-noremap <Leader>Y "+y<CR>
-noremap <Leader>P "+p<CR>
+noremap <leader>y "+y<CR>
+noremap <leader>p "+p<CR>
+noremap <leader>Y "+y<CR>
+noremap <leader>P "+p<CR>
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
