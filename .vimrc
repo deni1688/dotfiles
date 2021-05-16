@@ -13,13 +13,14 @@ let $BAT_THEME='base64'
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'Raimondi/delimitMate'
+Plug 'simnalamburt/vim-mundo'
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'arzg/vim-colors-xcode'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+rlug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
 Plug 'morhetz/gruvbox'
@@ -86,6 +87,8 @@ set updatetime=200
 set visualbell t_vb=
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
+set undofile
+set undodir=~/.vim/undo
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -105,18 +108,8 @@ source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
 
-augroup ROOT
+augroup BASE
     autocmd!
-    " Line cursor redraw
-    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-    au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-       " set markdown on md file type
     au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
@@ -187,3 +180,5 @@ nnoremap <leader>c :bd<CR>
 
 "" Saving faster
 nnoremap <silent> <leader>w <Esc>:w <CR>
+"" Toggle relative numbers
+nnoremap <leader>r :set relativenumber!<CR>
