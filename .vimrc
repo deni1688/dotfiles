@@ -20,7 +20,7 @@ Plug 'ap/vim-css-color'
 Plug 'arzg/vim-colors-xcode'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-rlug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
 Plug 'morhetz/gruvbox'
