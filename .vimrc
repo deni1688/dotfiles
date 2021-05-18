@@ -7,6 +7,7 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
+let g:material_theme_style='oceanic'
 
 let $BAT_THEME='base64'
 
@@ -14,6 +15,7 @@ call plug#begin(expand('~/.vim/plugged'))
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'Raimondi/delimitMate'
 Plug 'simnalamburt/vim-mundo'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
@@ -43,8 +45,7 @@ call plug#end()
 
 syntax on
 filetype plugin indent on
-colorscheme PaperColor
-
+colorscheme material
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
