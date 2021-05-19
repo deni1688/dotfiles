@@ -156,7 +156,7 @@ vnoremap > >gv
 
 "" FZF
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-l> :Lines<CR>
+nnoremap <silent> <C-l> :BLines<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 
