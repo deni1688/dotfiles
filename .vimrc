@@ -109,7 +109,20 @@ source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
 
 augroup BASE
-    autocmd!
+   autocmd!
+    " Line cursor redraw
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' |
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    " transparent bg
+    au vimenter * hi Normal guibg=NONE ctermbg=NONE
+    au vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+    " set markdown on md file type
     au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
@@ -183,4 +196,3 @@ nnoremap <leader>c :bd<CR>
 nnoremap <silent> <leader>w <Esc>:w <CR>
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
-hi Normal guibg=NONE ctermbg=NONE
