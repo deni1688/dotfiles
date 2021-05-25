@@ -12,6 +12,7 @@ let g:material_theme_style='oceanic'
 let $BAT_THEME='base64'
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'mxw/vim-jsx'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'Raimondi/delimitMate'
 Plug 'simnalamburt/vim-mundo'
@@ -45,7 +46,7 @@ call plug#end()
 
 syntax on
 filetype plugin indent on
-colorscheme material
+colorscheme gruvbox
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
