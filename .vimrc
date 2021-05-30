@@ -12,6 +12,9 @@ let g:material_theme_style='oceanic'
 let $BAT_THEME='base64'
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'mxw/vim-jsx'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'Raimondi/delimitMate'
@@ -80,7 +83,6 @@ set softtabstop=0
 set splitbelow
 set t_Co=256
 set tabstop=4
-set termwinsize=10x0
 set title
 set titlestring=%F
 set ttyfast
@@ -111,19 +113,6 @@ source <sfile>:h/.nerdtree-config.vim
 
 augroup BASE
    autocmd!
-    " Line cursor redraw
-    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-    au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    " transparent bg
-    au vimenter * hi Normal guibg=NONE ctermbg=NONE
-    au vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
-    " set markdown on md file type
     au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
@@ -197,3 +186,10 @@ nnoremap <leader>c :bd<CR>
 nnoremap <silent> <leader>w <Esc>:w <CR>
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
+
+"" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
