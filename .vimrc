@@ -54,7 +54,6 @@ colorscheme gruvbox
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
-set cursorline
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
