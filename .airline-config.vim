@@ -1,4 +1,4 @@
-let g:airline_theme='gruvbox'
+let g:airline_theme=$VIM_THEME
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1

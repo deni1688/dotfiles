@@ -50,7 +50,7 @@ call plug#end()
 
 syntax on
 filetype plugin indent on
-colorscheme gruvbox
+colorscheme $VIM_THEME
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
