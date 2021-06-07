@@ -1,4 +1,5 @@
 let mapleader=','
+
 let no_buffers_menu=1
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
@@ -9,7 +10,6 @@ let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
 
 call plug#begin(expand('~/.vim/plugged'))
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -191,3 +191,5 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+nnoremap <silent> <leader> <Esc>o
