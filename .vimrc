@@ -111,6 +111,18 @@ source <sfile>:h/.nerdtree-config.vim
 
 augroup BASE
    autocmd!
+    " Line cursor redraw
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' |
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    " transparent bg
+    au vimenter * hi Normal guibg=NONE ctermbg=NONE
+    au vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
     au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
