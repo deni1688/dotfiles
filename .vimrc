@@ -90,6 +90,7 @@ set visualbell t_vb=
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
 set relativenumber
+set guicursor=i-ci:ver25
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -110,19 +111,7 @@ source <sfile>:h/.coc-config.vim
 source <sfile>:h/.nerdtree-config.vim
 
 augroup BASE
-   autocmd!
-    " Line cursor redraw
-    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-    au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    " transparent bg
-    au vimenter * hi Normal guibg=NONE ctermbg=NONE
-    au vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+    autocmd!
     au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
