@@ -7,9 +7,6 @@ let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
-let g:material_theme_style='oceanic'
-
-let $BAT_THEME='base64'
 
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -92,6 +89,7 @@ set updatetime=200
 set visualbell t_vb=
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
+set relativenumber
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -191,4 +189,5 @@ nnoremap <leader>r :set relativenumber!<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
