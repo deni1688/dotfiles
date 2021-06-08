@@ -10,6 +10,7 @@ let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'mhartington/oceanic-next'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
