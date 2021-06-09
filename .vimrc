@@ -72,15 +72,12 @@ set nowritebackup
 set number
 set ruler
 set scrolloff=6
-set shiftwidth=4
 set shortmess+=c
 set signcolumn=yes
 set smartcase
 set smartindent
-set softtabstop=0
 set splitbelow
 set t_Co=256
-set tabstop=4
 set title
 set titlestring=%F
 set ttyfast
@@ -92,6 +89,12 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
 set relativenumber
 set guicursor=i-ci:ver25
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " tabs are space
+set autoindent
+set copyindent      " copy indent from the previous line
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
