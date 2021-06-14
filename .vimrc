@@ -50,6 +50,7 @@ call plug#end()
 syntax on
 filetype plugin indent on
 colorscheme $VIM_THEME
+set clipboard+=unnamedplus
 set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
@@ -90,12 +91,12 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
 set relativenumber
 set guicursor=i-ci:ver25
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set shiftwidth=4    " number of spaces to use for autoindent
-set expandtab       " tabs are space
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 set autoindent
-set copyindent      " copy indent from the previous line
+set copyindent
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
@@ -197,5 +198,3 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-nnoremap <silent> <leader> <Esc>o
