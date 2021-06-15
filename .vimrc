@@ -9,7 +9,12 @@ let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
 
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'sainnhe/sonokai'
 Plug 'tpope/vim-surround'
 Plug 'mhartington/oceanic-next'
 Plug 'nvim-lua/popup.nvim'
