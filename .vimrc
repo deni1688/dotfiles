@@ -80,6 +80,7 @@ set shortmess+=c
 set signcolumn=yes
 set smartcase
 set smartindent
+set indentexpr=
 set splitbelow
 set t_Co=256
 set title
