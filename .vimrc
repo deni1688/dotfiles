@@ -3,10 +3,6 @@ let mapleader=','
 let no_buffers_menu=1
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = 0
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
 let g:UltiSnipsEditSplit="vertical"
 
 let g:sonokai_style = 'maia'
