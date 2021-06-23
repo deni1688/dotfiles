@@ -9,41 +9,6 @@ let g:sonokai_style = 'maia'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 
-call plug#begin(expand('~/.vim/plugged'))
-Plug 'sainnhe/sonokai'
-Plug 'tpope/vim-surround'
-Plug 'mhartington/oceanic-next'
-Plug 'mxw/vim-jsx'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'Raimondi/delimitMate'
-Plug 'simnalamburt/vim-mundo'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'SirVer/ultisnips'
-Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
-Plug 'arzg/vim-colors-xcode'
-Plug 'dense-analysis/ale'
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-Plug 'honza/vim-snippets'
-Plug 'janko-m/vim-test'
-Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'preservim/tagbar'
-Plug 'ryanoasis/vim-devicons'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-endif
-call plug#end()
 
 syntax on
 filetype plugin indent on
@@ -75,8 +40,6 @@ set scrolloff=6
 set shortmess+=c
 set signcolumn=yes
 set smartcase
-set smartindent
-set indentexpr=
 set splitbelow
 set t_Co=256
 set title
@@ -90,11 +53,12 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildmode=list:longest,list:full
 set relativenumber
 set guicursor=i-ci:ver25
-set tabstop=4
 set softtabstop=4
+set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
+set smartindent
 set copyindent
 
 if $COLORTERM == 'gnome-terminal'
@@ -191,16 +155,38 @@ nnoremap <silent> <leader>w <Esc>:w <CR>
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
 
-"" Telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-if has('nvim')
-  tnoremap <a-a> <esc>a
-  tnoremap <a-b> <esc>b
-  tnoremap <a-d> <esc>d
-  tnoremap <a-f> <esc>f
+call plug#begin(expand('~/.vim/plugged'))
+Plug 'sainnhe/sonokai'
+Plug 'tpope/vim-surround'
+Plug 'mhartington/oceanic-next'
+Plug 'mxw/vim-jsx'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'Raimondi/delimitMate'
+Plug 'simnalamburt/vim-mundo'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
+Plug 'arzg/vim-colors-xcode'
+Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+Plug 'honza/vim-snippets'
+Plug 'janko-m/vim-test'
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'preservim/tagbar'
+Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
 endif
+call plug#end()
