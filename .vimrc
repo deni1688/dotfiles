@@ -191,3 +191,5 @@ nnoremap <leader>c :bd<CR>
 nnoremap <silent> <leader>w <Esc>:w <CR>
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
+
+nnoremap <silent> <leader>vs :! code $(git rev-parse --show-toplevel)<CR>
