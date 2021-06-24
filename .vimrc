@@ -9,8 +9,8 @@ let g:sonokai_style = 'maia'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 
-
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'junegunn/limelight.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'sainnhe/sonokai'
 Plug 'tpope/vim-surround'
