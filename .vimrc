@@ -10,6 +10,8 @@ let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 Plug 'junegunn/limelight.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'sainnhe/sonokai'
