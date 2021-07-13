@@ -8,7 +8,9 @@ let g:UltiSnipsEditSplit="vertical"
 let g:sonokai_style = 'maia'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
-
+if (has("termguicolors"))
+  set termguicolors
+endif
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'Brettm12345/moonlight.vim'
 Plug 'xolox/vim-misc'
