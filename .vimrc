@@ -199,3 +199,5 @@ nnoremap <leader>r :set relativenumber!<CR>
 
 nnoremap <silent> <leader>vc :! code $(git rev-parse --show-toplevel) && code %<CR>
 nnoremap <silent> <leader>ij :! idea %<CR>
+
+nnoremap V v$
