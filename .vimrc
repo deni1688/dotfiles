@@ -1,4 +1,5 @@
 let mapleader=','
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 
 let no_buffers_menu=1
 let g:ale_disable_lsp = 1
@@ -13,6 +14,7 @@ if (has("termguicolors"))
 endif
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'Brettm12345/moonlight.vim'
+Plug 'othree/xml.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'junegunn/limelight.vim'
