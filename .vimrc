@@ -6,7 +6,7 @@ let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
 
-let g:sonokai_style = 'espresso'
+let g:sonokai_style = 'andromeda'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 if (has("termguicolors"))
