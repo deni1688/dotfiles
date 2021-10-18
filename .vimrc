@@ -4,7 +4,7 @@ let no_buffers_menu=1
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
-
+let g:gruvbox_contrast_dark="dark"
 let g:sonokai_style = 'andromeda'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
