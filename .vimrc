@@ -5,10 +5,11 @@ let no_buffers_menu=1
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
-let g:gruvbox_contrast_dark="dark"
-let g:sonokai_style = 'andromeda'
+let g:gruvbox_contrast_dark = 'hard'
+let g:sonokai_style = 'atlantis'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
+let g:session_autosave = 'no'
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -36,7 +37,6 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
-Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
@@ -46,6 +46,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-conf-live/vimconflive2021-colorscheme'
+Plug 'gruvbox-community/gruvbox'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
