@@ -12,7 +12,10 @@ let g:sonokai_disable_italic_comment = 1
 if (has("termguicolors"))
   set termguicolors
 endif
+let ayucolor="mirage"
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'Brettm12345/moonlight.vim'
 Plug 'othree/xml.vim'
 Plug 'xolox/vim-misc'
@@ -194,8 +197,6 @@ nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
 nnoremap <leader>c :bd<CR>
 
-"" Saving faster
-nnoremap <silent> <leader>w <Esc>:w <CR>
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
 
