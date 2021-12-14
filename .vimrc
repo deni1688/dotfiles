@@ -15,8 +15,7 @@ if (has("termguicolors"))
 endif
 let ayucolor="mirage"
 call plug#begin(expand('~/.vim/plugged'))
-Plug 'arcticicestudio/nord-vim'
-Plug 'ayu-theme/ayu-vim'
+Plug 'wojciechkepka/vim-github-dark'
 Plug 'Brettm12345/moonlight.vim'
 Plug 'othree/xml.vim'
 Plug 'xolox/vim-misc'
