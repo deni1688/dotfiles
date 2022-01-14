@@ -7,6 +7,7 @@ let aleLinterConfig = {
 \   'typescript': ['eslint'],
 \   'json': ['prettier'],
 \   'go': ['gofmt'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_linters = aleLinterConfig
 let g:ale_fixers = aleLinterConfig

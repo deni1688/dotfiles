@@ -5,16 +5,18 @@ let no_buffers_menu=1
 let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
-let g:gruvbox_contrast_dark = 'hard'
-let g:sonokai_style = 'atlantis'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
 let g:session_autosave = 'no'
+let g:gh_color = "soft"
+
 if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="mirage"
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'rust-lang/rust.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'projekt0n/github-nvim-theme'
 Plug 'wojciechkepka/vim-github-dark'
 Plug 'Brettm12345/moonlight.vim'
 Plug 'othree/xml.vim'
@@ -205,3 +207,9 @@ nnoremap <silent> <leader>vc :! code $(git rev-parse --show-toplevel) && code %<
 nnoremap <silent> <leader>ij :! idea %<CR>
 
 nnoremap V v$
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
