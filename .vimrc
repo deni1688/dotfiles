@@ -1,5 +1,6 @@
 let mapleader=','
 let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+let g:rustfmt_autosave = 1
 
 let no_buffers_menu=1
 let g:ale_disable_lsp = 1
