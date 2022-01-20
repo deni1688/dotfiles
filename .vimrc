@@ -3,10 +3,8 @@ let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 let g:rustfmt_autosave = 1
 
 let no_buffers_menu=1
-let g:ale_disable_lsp = 1
 let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
-let g:session_autosave = 'no'
 let g:gh_color = "soft"
 
 if (has("termguicolors"))
@@ -14,33 +12,22 @@ if (has("termguicolors"))
 endif
 let ayucolor="mirage"
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'neovim/nvim-lspconfig'
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'projekt0n/github-nvim-theme'
-Plug 'wojciechkepka/vim-github-dark'
-Plug 'Brettm12345/moonlight.vim'
 Plug 'othree/xml.vim'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
 Plug 'junegunn/limelight.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'sainnhe/sonokai'
-Plug 'tpope/vim-surround'
-Plug 'mhartington/oceanic-next'
 Plug 'mxw/vim-jsx'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'Raimondi/delimitMate'
-Plug 'simnalamburt/vim-mundo'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
-Plug 'arzg/vim-colors-xcode'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -51,17 +38,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-conf-live/vimconflive2021-colorscheme'
-Plug 'gruvbox-community/gruvbox'
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-endif
+Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
-syntax on
+syntax on/
 filetype plugin indent on
 colorscheme $VIM_THEME
 set clipboard+=unnamedplus
@@ -163,24 +144,15 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap < <gv
 vnoremap > >gv
 
-"" FZF
-nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-l> :BLines<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <C-f> :Rg<CR>
 
 "" Tags
 nnoremap <silent> <F4> :TagbarToggle<CR>
-nnoremap <silent> <F5> :MundoToggle<CR>
 
 "" Switching windows
 noremap <C-Down> <C-w>j
 noremap <C-Up> <C-w>k
 noremap <C-Right> <C-w>l
 noremap <C-Left> <C-w>h
-
-"" Terminal emulation
-nnoremap <silent> <leader>sh :terminal<CR>
 
 "" Split
 noremap <leader>h :<C-u>split<CR>
@@ -199,7 +171,7 @@ noremap <leader>gr :Gremove<CR>
 "" Buffer nav
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
-nnoremap <leader>c :bd<CR>
+nnoremap <leader>c :bd!<CR>
 
 "" Toggle relative numbers
 nnoremap <leader>r :set relativenumber!<CR>
@@ -214,3 +186,4 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
