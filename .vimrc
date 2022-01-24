@@ -10,8 +10,18 @@ let g:gh_color = "soft"
 if (has("termguicolors"))
   set termguicolors
 endif
+
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+if has('termguicolors') && &termguicolors
+    let g:jellybeans_overrides['background']['guibg'] = 'none'
+endif
+
+
 let ayucolor="mirage"
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
