@@ -7,8 +7,19 @@ let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
 let g:gh_color = "soft"
 
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+if has('termguicolors') && &termguicolors
+    let g:jellybeans_overrides['background']['guibg'] = 'none'
+endif
+
 func! s:my_colors_setup() abort
-    " this is an example
     hi Pmenu guibg=#111111 gui=NONE
     hi PmenuSel guibg=#cc0000 gui=NONE
     hi PmenuSbar guibg=#ccc000
@@ -19,17 +30,8 @@ augroup colorscheme_coc_setup | au!
     au ColorScheme * call s:my_colors_setup()
 augroup END
 
-if (has("termguicolors"))
-  set termguicolors
-endif
-let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-\}
-if has('termguicolors') && &termguicolors
-    let g:jellybeans_overrides['background']['guibg'] = 'none'
-endif
-let ayucolor="mirage"
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
