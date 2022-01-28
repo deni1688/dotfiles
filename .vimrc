@@ -1,7 +1,6 @@
 let mapleader=','
 let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 let g:rustfmt_autosave = 1
-
 let no_buffers_menu=1
 let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsEditSplit="vertical"
@@ -183,10 +182,9 @@ noremap <leader>ga :Gwrite<CR>
 noremap <leader>gc :Git commit<CR>
 noremap <leader>gsh :Git push<CR>
 noremap <leader>gll :Git pull<CR>
-noremap <leader>gs :Git<CR>
-noremap <leader>gb :Gblame<CR>
+noremap <leader>gb :Git blame<CR>
 noremap <leader>gd :Gvdiff<CR>
-noremap <leader>gr :Gremove<CR>
+noremap <leader>gr :Git remove<CR>
 
 "" Buffer nav
 nnoremap <tab> :bn<CR>
@@ -207,3 +205,5 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <Leader>fc :lua require'telescope.builtin'.git_commits()<cr>
+nnoremap <Leader>fr :lua require'telescope.builtin'.git_branches()<cr>
