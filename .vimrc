@@ -14,6 +14,7 @@ endif
 let g:jellybeans_overrides = {
 \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
 \}
+
 if has('termguicolors') && &termguicolors
     let g:jellybeans_overrides['background']['guibg'] = 'none'
 endif
@@ -30,6 +31,8 @@ augroup colorscheme_coc_setup | au!
 augroup END
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'honza/vim-snippets'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'rust-lang/rust.vim'
@@ -205,5 +208,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <Leader>fc :lua require'telescope.builtin'.git_commits()<cr>
-nnoremap <Leader>fr :lua require'telescope.builtin'.git_branches()<cr>
+nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
+nnoremap <leader>fr <cmd>lua require('telescope.builtin').git_branches()<cr>
+
+lua require('telescope').load_extension('fzf')
