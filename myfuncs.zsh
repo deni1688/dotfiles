@@ -1,4 +1,3 @@
-
 function new_repo {
     PROJECT_NAME=$1
     PROJECT_PATH=$HOME/IdeaProjects/$PROJECT_NAME

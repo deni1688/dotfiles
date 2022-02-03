@@ -31,6 +31,7 @@ augroup colorscheme_coc_setup | au!
 augroup END
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'honza/vim-snippets'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -64,11 +65,11 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
-syntax on/
+syntax on
 filetype plugin indent on
 colorscheme $VIM_THEME
 set clipboard+=unnamedplus
-set background=dark
+set background=light
 set backspace=indent,eol,start
 set conceallevel=2
 set encoding=utf-8
