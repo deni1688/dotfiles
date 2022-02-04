@@ -11,25 +11,6 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-\}
-
-if has('termguicolors') && &termguicolors
-    let g:jellybeans_overrides['background']['guibg'] = 'none'
-endif
-
-func! s:my_colors_setup() abort
-    hi Pmenu guibg=#111111 gui=NONE
-    hi PmenuSel guibg=#cc0000 gui=NONE
-    hi PmenuSbar guibg=#ccc000
-    hi PmenuThumb guibg=#cccccc
-endfunc
-
-augroup colorscheme_coc_setup | au!
-    au ColorScheme * call s:my_colors_setup()
-augroup END
-
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
