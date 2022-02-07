@@ -50,7 +50,7 @@ syntax on
 filetype plugin indent on
 colorscheme $VIM_THEME
 set clipboard+=unnamedplus
-set background=light
+set background=dark
 set backspace=indent,eol,start
 set conceallevel=2
 set encoding=utf-8
