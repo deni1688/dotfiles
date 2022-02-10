@@ -12,6 +12,7 @@ if (has("termguicolors"))
 endif
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'jnurmine/Zenburn'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'honza/vim-snippets'
