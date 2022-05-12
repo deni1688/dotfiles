@@ -12,8 +12,7 @@ if (has("termguicolors"))
 endif
 
 call plug#begin(expand("~/.local/share/nvim/site/autoload/"))
-Plug 'projekt0n/github-nvim-theme'
-Plug 'joshdick/onedark.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'honza/vim-snippets'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
