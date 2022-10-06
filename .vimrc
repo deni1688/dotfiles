@@ -1,10 +1,6 @@
 let mapleader=','
-let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
-let g:rustfmt_autosave = 1
 let no_buffers_menu=1
 let g:vim_markdown_folding_disabled = 1
-let g:UltiSnipsEditSplit="vertical"
-let g:gh_color = "soft"
 
 
 if (has("termguicolors"))
@@ -12,39 +8,26 @@ if (has("termguicolors"))
 endif
 
 call plug#begin(expand('~/.vim/plugged'))
-Plug 'jnurmine/Zenburn'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'honza/vim-snippets'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'neovim/nvim-lspconfig'
-Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'othree/xml.vim'
-Plug 'xolox/vim-misc'
-Plug 'junegunn/limelight.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
-Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'janko-m/vim-test'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'preservim/tagbar'
-Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 syntax on
@@ -112,9 +95,7 @@ endif
 
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
-source <sfile>:h/.ale-config.vim
 source <sfile>:h/.coc-config.vim
-source <sfile>:h/.nerdtree-config.vim
 
 augroup BASE
     autocmd!
@@ -194,4 +175,50 @@ nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').git_branches()<cr>
 
-lua require('telescope').load_extension('fzf')
+lua << EOF
+require("mason").setup()
+require("mason-lspconfig").setup()
+require('telescope').load_extension('fzf')
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
+
+local lsp_flags = {
+  debounce_text_changes = 150,
+}
+
+require('lspconfig').gopls.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+EOF
