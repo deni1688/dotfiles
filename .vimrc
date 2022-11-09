@@ -9,7 +9,6 @@ endif
 
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'pangloss/vim-javascript'
@@ -26,9 +25,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 syntax on
@@ -177,7 +173,5 @@ nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').git_branches()<cr>
 
 lua << EOF
-require("mason").setup()
-require("mason-lspconfig").setup()
-require('telescope').load_extension('fzf')
+    require('telescope').load_extension('fzf')
 EOF
