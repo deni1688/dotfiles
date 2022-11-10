@@ -48,6 +48,11 @@ lua << EOF
         flags = lsp_flags,
     }
 
+    require('lspconfig')['typescript-language-server'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+
     require('lspconfig')['gopls'].setup{
         on_attach = on_attach,
         flags = lsp_flags,
