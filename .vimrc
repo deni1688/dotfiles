@@ -1,13 +1,14 @@
 let mapleader=','
 let no_buffers_menu=1
 let g:vim_markdown_folding_disabled = 1
-
+let g:monokaipro_filter = "spectrum"
 
 if (has("termguicolors"))
   set termguicolors
 endif
 
 call plug#begin(expand('~/.vim/plugged'))
+Plug 'https://gitlab.com/__tpb/monokai-pro.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -27,6 +28,7 @@ Plug 'morhetz/gruvbox'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'artanikin/vim-synthwave84'
 call plug#end()
 
 syntax on
