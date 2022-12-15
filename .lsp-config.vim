@@ -1,5 +1,4 @@
 lua << EOF
-    require('telescope').load_extension('fzf')
     require("mason").setup()
     require("mason-lspconfig").setup()
 
@@ -61,5 +60,9 @@ lua << EOF
           ["rust-analyzer"] = {}
         }
     }
+
+    require('lspconfig').vls.setup{}
+
+    vim.cmd([[au BufNewFile,BufRead *.v set filetype=vlang]])
 EOF
 

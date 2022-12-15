@@ -25,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 call plug#end()
@@ -95,7 +96,6 @@ endif
 source <sfile>:h/.airline-config.vim
 source <sfile>:h/.go-config.vim
 source <sfile>:h/.coc-config.vim
-
 
 augroup BASE
     autocmd!
@@ -175,8 +175,8 @@ nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').git_branches()<cr>
 
+source <sfile>:h/.lsp-config.vim
+
 lua << EOF
     require('telescope').load_extension('fzf')
 EOF
-
-source <sfile>:h/.lsp-config.vim

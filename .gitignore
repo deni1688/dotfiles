@@ -1,11 +1,10 @@
 *
 
 !.airline-config.vim
-!.ale-config.vim
 !.coc-config.vim
-!.nerdtree-config.vim
 !.gitignore
-!.go-config.vim
+!!.go-config.vim
+!.lsp-config.vim
 !.vimrc
 !.eslintrc.json
 !.tmux.conf
