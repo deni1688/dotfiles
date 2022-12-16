@@ -37,6 +37,10 @@ vim.cmd [[
     source ~/.config/nvim/.airline-config.vim
     source ~/.config/nvim/.go-config.vim
 
+    if exists("*fugitive#statusline")
+        set statusline=%(fugitive#statusline())
+    endif
+
     "" Telescope
     nnoremap <leader>ff <cmd>Telescope find_files<cr>
     nnoremap <leader>fg <cmd>Telescope live_grep<cr>
