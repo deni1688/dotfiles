@@ -27,7 +27,6 @@ Plug ('fatih/vim-go', {['do'] = ':GoInstallBinaries'})
 
 vim.call('plug#end')
 
-
 vim.cmd [[
     syntax on
     filetype plugin indent on
@@ -75,10 +74,6 @@ vim.cmd [[
     vnoremap < <gv
     vnoremap > >gv
 
-
-    "" Tags
-    nnoremap <silent> <F4> :TagbarToggle<CR>
-
     "" Switching windows
     noremap <C-Down> <C-w>j
     noremap <C-Up> <C-w>k
@@ -105,9 +100,6 @@ vim.cmd [[
 
     "" Toggle relative numbers
     nnoremap <leader>r :set relativenumber!<CR>
-
-    nnoremap <silent> <leader>vc :! code $(git rev-parse --show-toplevel) && code %<CR>
-    nnoremap <silent> <leader>ij :! idea %<CR>
 
     nnoremap V v$
 ]]
