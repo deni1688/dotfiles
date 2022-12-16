@@ -31,10 +31,14 @@ vim.cmd [[
     syntax on
     filetype plugin indent on
     colorscheme monokaipro
+
     set number
     set nornu
     set mouse=a
     set mousemodel=popup
+    set undofile
+    set undodir=~/.config/nvim/undo
+    set clipboard+=unnamedplus
 
     source ~/.config/nvim/.airline-config.vim
     source ~/.config/nvim/.go-config.vim
