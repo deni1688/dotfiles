@@ -33,6 +33,8 @@ vim.cmd [[
     colorscheme monokaipro
     set number
     set nornu
+    set mouse=a
+    set mousemodel=popup
 
     source ~/.config/nvim/.airline-config.vim
     source ~/.config/nvim/.go-config.vim
