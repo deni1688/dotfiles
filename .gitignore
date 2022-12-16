@@ -1,6 +1,7 @@
 *
 
-!.airline-config.vim
+!init.lua
+.airline-config.vim
 !.coc-config.vim
 !.gitignore
 !!.go-config.vim

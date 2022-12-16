@@ -35,53 +35,7 @@ call plug#end()
 syntax on
 filetype plugin indent on
 colorscheme $VIM_THEME
-set clipboard+=unnamedplus
-set background=dark
-set backspace=indent,eol,start
-set conceallevel=2
-set encoding=utf-8
-set expandtab
-set fileencoding=utf-8
-set fileformats=unix,dos,mac
-set gcr=a:blinkon0
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-set hidden
-set hlsearch
-set ignorecase
-set incsearch
-set mouse=a
-set mousemodel=popup
-set nobackup
-set noerrorbells visualbell t_vb=
-set nohlsearch
-set noswapfile
-set nowritebackup
-set number
-set ruler
-set scrolloff=6
-set shortmess+=c
-set signcolumn=yes
-set smartcase
-set splitbelow
-set t_Co=256
-set title
-set titlestring=%F
-set ttyfast
-set undodir=~/.vim/undo
-set undofile
-set updatetime=200
-set visualbell t_vb=
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-set wildmode=list:longest,list:full
-set relativenumber
-set guicursor=i-ci:ver25
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-set smartindent
-set copyindent
+
 
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
