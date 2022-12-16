@@ -27,6 +27,7 @@ Plug ('fatih/vim-go', {['do'] = ':GoInstallBinaries'})
 
 vim.call('plug#end')
 
+
 vim.cmd [[
     syntax on
     filetype plugin indent on
@@ -190,5 +191,8 @@ require('lspconfig')['rust_analyzer'].setup{
 
 require('lspconfig').vls.setup{}
 
-vim.cmd([[au BufNewFile,BufRead *.v set filetype=vlang]])
+vim.cmd([[
+    au BufNewFile,BufRead *.v set filetype=vlang
+    au BufNewFile,BufRead *.md set filetype=markdown
+]])
 
