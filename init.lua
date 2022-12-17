@@ -1,4 +1,37 @@
+
+
+local Plug = vim.fn['plug#']
+
+vim.call('plug#begin', '~/.config/nvim/plugged')
+
+Plug 'tpope/vim-sensible'
+Plug 'https://gitlab.com/__tpb/monokai-pro.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'airblade/vim-gitgutter'
+Plug 'janko-m/vim-test'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'VonHeikemen/lsp-zero.nvim'
+Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
+Plug ('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+
+vim.call("plug#end")
+
 vim.g.mapleader = ","
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
@@ -20,120 +53,28 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 
-
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.opt.syntax = 'enable'
+vim.keymap.set('n', '<leader>c',  ':bd!<cr>')
+vim.keymap.set('n', 'V', 'v$')
+vim.keymap.set('n', '<leader>r', ':set rnu!<cr>')
+vim.keymap.set('n', '<leader>tt', ':TestNearest<cr>')
+vim.keymap.set('n',  '<leader>ga' ,':Gwrite<cr>')
+vim.keymap.set('n',  '<leader>gc' ,':Git commit<cr>')
+vim.keymap.set('n',  '<leader>gsh',':Git push<cr>')
+vim.keymap.set('n',  '<leader>gll',':Git pull<cr>')
+vim.keymap.set('n',  '<leader>gb' ,':Git blame<cr>')
+vim.keymap.set('n',  '<leader>gd' ,':Gvdiff<cr>')
+vim.keymap.set('n',  '<leader>gr' ,':Git remove<cr>')
 
-local Plug = vim.fn['plug#']
-
-vim.call('plug#begin', '~/.config/nvim/plugged')
-
-Plug 'tpope/vim-sensible'
-Plug 'https://gitlab.com/__tpb/monokai-pro.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'airblade/vim-gitgutter'
-Plug 'janko-m/vim-test'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'rafamadriz/friendly-snippets'
-Plug 'VonHeikemen/lsp-zero.nvim'
-Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
-Plug ('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
-
-vim.call('plug#end')
-
-vim.cmd [[
-    syntax on
-    filetype plugin indent on
-    colorscheme monokaipro
-
-    source ~/.config/nvim/.airline-config.vim
-
-    if exists("*fugitive#statusline")
-        set statusline=%(fugitive#statusline())
-    endif
-
-    "" Telescope
-    nnoremap <leader>ff <cmd>Telescope find_files<cr>
-    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-    nnoremap <leader>fb <cmd>Telescope buffers<cr>
-    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-    nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
-    nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
-    nnoremap <leader>fr <cmd>lua require('telescope.builtin').git_branches()<cr>
-
-    "" Line movement
-    inoremap <S-Down> <Esc>:m+<CR>
-    inoremap <S-Up> <Esc>:m-2<CR>
-    nnoremap <S-Down> :m+<CR>
-    nnoremap <S-Up> :m-2<CR>
-
-    "" Vim test
-    nnoremap <leader>tt :TestNearest
-
-    "" Vertical window resize
-    noremap <silent> <S-Right> :vertical resize +15<CR>
-    noremap <silent><S-Left> :vertical resize -15<CR>
-
-    "" Copy/Past from clipboard
-    noremap <leader>y "+y<CR>
-    noremap <leader>p "+p<CR>
-    noremap <leader>Y "+y<CR>
-    noremap <leader>P "+p<CR>
-
-    "" Move visual block
-    vnoremap J :m '>+1<CR>gv=gv
-    vnoremap K :m '<-2<CR>gv=gv
-    vnoremap < <gv
-    vnoremap > >gv
-
-    "" Switching windows
-    noremap <C-Down> <C-w>j
-    noremap <C-Up> <C-w>k
-    noremap <C-Right> <C-w>l
-    noremap <C-Left> <C-w>h
-
-    "" Split
-    noremap <leader>h :<C-u>split<CR>
-    noremap <leader>v :<C-u>vsplit<CR>
-
-    "" Git
-    noremap <leader>ga :Gwrite<CR>
-    noremap <leader>gc :Git commit<CR>
-    noremap <leader>gsh :Git push<CR>
-    noremap <leader>gll :Git pull<CR>
-    noremap <leader>gb :Git blame<CR>
-    noremap <leader>gd :Gvdiff<CR>
-    noremap <leader>gr :Git remove<CR>
-
-    "" Buffer nav
-    nnoremap <tab> :bn<CR>
-    nnoremap <s-tab> :bp<CR>
-    nnoremap <leader>c :bd!<CR>
-
-    "" Toggle relative numbers
-    nnoremap <leader>r :set relativenumber!<CR>
-
-    nnoremap V v$
-]]
-
-
-require('telescope').load_extension('fzf')
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- LSP Config
 local lsp = require('lsp-zero')
@@ -182,12 +123,10 @@ end
 
 require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
-    flags = lsp_flags,
 }
 
 require('lspconfig')['gopls'].setup{
     on_attach = on_attach,
-    flags = lsp_flags,
 }
 
 require('lspconfig')['sumneko_lua'].setup{
@@ -203,35 +142,60 @@ require('lspconfig')['sumneko_lua'].setup{
 
 require('lspconfig')['rust_analyzer'].setup{
     on_attach = on_attach,
-    flags = lsp_flags
 }
 
 require('lspconfig').vls.setup{}
 
-
-vim.cmd([[
-    au BufNewFile,BufRead *.v set filetype=vlang
-    au BufNewFile,BufRead *.md set filetype=markdown
-]])
-
 require('nvim-treesitter.configs').setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "lua", "rust", "go", "javascript", "typescript", "python" },
-  -- Install parsers synchronously (only applied to `ensure_installed`)
+  ensure_installed = { "lua", "rust", "go", "javascript", "typescript", "python", "vim" },
   sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
-
   highlight = {
-    -- `false` will disable the whole extension
     enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
 }
+
+require('telescope').load_extension('fzf')
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'nord',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+
+vim.cmd('colorscheme monokaipro')
