@@ -5,7 +5,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'https://gitlab.com/__tpb/monokai-pro.nvim'
+Plug 'rose-pine/neovim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'airblade/vim-gitgutter'
@@ -198,4 +198,4 @@ require('lualine').setup {
   extensions = {}
 }
 
-vim.cmd('colorscheme monokaipro')
+vim.cmd('colorscheme rose-pine')
