@@ -69,6 +69,11 @@ vim.keymap.set('n',  '<leader>gll',':Git pull<cr>')
 vim.keymap.set('n',  '<leader>gb' ,':Git blame<cr>')
 vim.keymap.set('n',  '<leader>gd' ,':Gvdiff<cr>')
 vim.keymap.set('n',  '<leader>gr' ,':Git remove<cr>')
+vim.keymap.set('n',  '<c-right>', ':bn<cr>')
+vim.keymap.set('n',  '<c-right>', ':bp<cr>')
+
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<c-\\>", 'copilot#Accept("<cr>")', { silent = true, expr = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
