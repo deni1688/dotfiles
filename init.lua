@@ -24,6 +24,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'VonHeikemen/lsp-zero.nvim'
 Plug 'ThePrimeagen/refactoring.nvim'
+Plug 'mbbill/undotree'
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
@@ -70,6 +71,7 @@ vim.keymap.set('n', '<leader>gd', ':Gvdiff<cr>')
 vim.keymap.set('n', '<leader>gr', ':Git remove<cr>')
 vim.keymap.set('n', '<c-right>', ':bn<cr>')
 vim.keymap.set('n', '<c-right>', ':bp<cr>')
+vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
 
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<c-\\>", 'copilot#Accept("<cr>")', { silent = true, expr = true })
@@ -150,6 +152,13 @@ require('lspconfig')['rust_analyzer'].setup {
 
 require('lspconfig').vls.setup {}
 
+vim.diagnostic.config({
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    virtual_text = true
+})
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = { "lua", "rust", "go", "javascript", "typescript", "python", "vim" },
     sync_install = false,
@@ -202,14 +211,11 @@ require('lualine').setup {
     extensions = {}
 }
 
-require('refactoring').setup({})
 require('refactoring').setup({
-    -- prompt for return type
     prompt_func_return_type = {
         go = true,
         typescript = true
     },
-    -- prompt for function parameters
     prompt_func_param_type = {
         go = true,
         typescript = true
