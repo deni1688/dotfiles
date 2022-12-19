@@ -33,6 +33,9 @@ vim.call("plug#end")
 vim.g.mapleader = ","
 
 vim.opt.nu = true
+vim.opt.splitbelow = true
+vim.opt.wildmode = { 'list:longest', 'list:full' }
+vim.opt.wildignore = vim.opt.wildignore + { '*.o', '*.obj', '*.dll', '*.exe', '.git', '*.db' }
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
