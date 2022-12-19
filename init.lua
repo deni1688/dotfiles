@@ -32,6 +32,7 @@ vim.call("plug#end")
 
 vim.g.mapleader = ","
 
+vim.opt.syntax = 'enable'
 vim.opt.nu = true
 vim.opt.splitbelow = true
 vim.opt.wildmode = { 'list:longest', 'list:full' }
@@ -56,11 +57,15 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '"+y<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '"+p<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>Y', '"+y<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>P', '"+p<CR>', { noremap = true })
+
+vim.keymap.set("n", "<leader>pv<cr>")
+vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.opt.syntax = 'enable'
 vim.keymap.set('n', '<leader>c', ':bd!<cr>')
 vim.keymap.set('n', 'V', 'v$')
 vim.keymap.set('n', '<leader>r', ':set rnu!<cr>')
