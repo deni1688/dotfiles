@@ -56,13 +56,13 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
+vim.opt.clipboard = "unnamedplus"
 
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '"+y<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '"+p<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>Y', '"+y<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>P', '"+p<CR>', { noremap = true })
 
-vim.keymap.set("n", "<leader>pv<cr>")
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -80,6 +80,7 @@ vim.keymap.set('n', '<leader>gr', ':Git remove<cr>')
 vim.keymap.set('n', '<c-right>', ':bn<cr>')
 vim.keymap.set('n', '<c-right>', ':bp<cr>')
 vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
+vim.keymap.set('n', '<leader>fa', ':EslintFixAll<cr>')
 
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<c-\\>", 'copilot#Accept("<cr>")', { silent = true, expr = true })
@@ -106,10 +107,10 @@ lsp.setup()
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -121,15 +122,15 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
+    vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
