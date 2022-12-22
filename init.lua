@@ -27,10 +27,12 @@ Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug 'napmn/react-extract.nvim'
+Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
-vim.call("plug#end")
+vim.call('plug#end')
 
-vim.g.mapleader = ","
+vim.g.mapleader = ','
 
 vim.opt.syntax = 'enable'
 vim.opt.nu = true
@@ -46,26 +48,26 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+vim.opt.signcolumn = 'yes'
+vim.opt.isfname:append('@-@')
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "120"
-vim.opt.clipboard = "unnamedplus"
+vim.opt.colorcolumn = '120'
+vim.opt.clipboard = 'unnamedplus'
 
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '"+y<CR>', { noremap = true })
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '"+p<CR>', { noremap = true })
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>Y', '"+y<CR>', { noremap = true })
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>P', '"+p<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '\'+y<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '\'+p<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>Y', '\'+y<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<leader>P', '\'+p<CR>', { noremap = true })
 
-vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set('v', '{', ':m \'>+1<cr>gv=gv')
+vim.keymap.set('v', '}', ':m \'<-2<cr>gv=gv')
+vim.keymap.set('x', '<leader>p', [['_dP]])
 vim.keymap.set('n', '<leader>c', ':bd!<cr>')
 vim.keymap.set('n', 'V', 'v$')
 vim.keymap.set('n', '<leader>r', ':set rnu!<cr>')
@@ -83,7 +85,7 @@ vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
 vim.keymap.set('n', '<leader>fa', ':EslintFixAll<cr>')
 
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<c-\\>", 'copilot#Accept("<cr>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap('i', '<c-\\>', 'copilot#Accept(\'<cr>\')', { silent = true, expr = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -135,6 +137,15 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
+require('react-extract').setup({
+    js_template_before =
+    'function [COMPONENT_NAME]'
+        .. '([PROPERTIES]) {\n'
+        .. '[INDENT]return (\n'
+})
+
+vim.keymap.set({ 'v' }, '<leader>ef', require('react-extract').extract_to_new_file)
+vim.keymap.set({ 'v' }, '<leader>ec', require('react-extract').extract_to_current_file)
 
 require('lspconfig')['tsserver'].setup {
     on_attach = on_attach,
@@ -169,7 +180,7 @@ vim.diagnostic.config({
 })
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { "lua", "rust", "go", "javascript", "typescript", "python", "vim" },
+    ensure_installed = { 'lua', 'rust', 'go', 'javascript', 'typescript', 'python', 'vim' },
     sync_install = false,
     auto_install = true,
     highlight = {
@@ -231,25 +242,22 @@ require('refactoring').setup({
     },
 })
 
--- Remaps for the refactoring operations currently offered by the plugin
-vim.api.nvim_set_keymap("v", "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+vim.api.nvim_set_keymap('v', '<leader>re', [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
     { noremap = true, silent = true, expr = false })
-vim.api.nvim_set_keymap("v", "<leader>rf",
+vim.api.nvim_set_keymap('v', '<leader>rf',
     [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
     { noremap = true, silent = true, expr = false })
-vim.api.nvim_set_keymap("v", "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+vim.api.nvim_set_keymap('v', '<leader>rv', [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
-vim.api.nvim_set_keymap("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-    { noremap = true, silent = true, expr = false })
-
--- Extract block doesn't need visual mode
-vim.api.nvim_set_keymap("n", "<leader>rb", [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]],
-    { noremap = true, silent = true, expr = false })
-vim.api.nvim_set_keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]],
+vim.api.nvim_set_keymap('v', '<leader>ri', [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
 
--- Inline variable can also pick up the identifier currently under the cursor without visual mode
-vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+vim.api.nvim_set_keymap('n', '<leader>rb', [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]],
+    { noremap = true, silent = true, expr = false })
+vim.api.nvim_set_keymap('n', '<leader>rbf', [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]],
+    { noremap = true, silent = true, expr = false })
+
+vim.api.nvim_set_keymap('n', '<leader>ri', [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
 
 vim.cmd('colorscheme rose-pine')
