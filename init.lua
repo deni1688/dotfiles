@@ -26,7 +26,7 @@ Plug 'VonHeikemen/lsp-zero.nvim'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
 Plug 'napmn/react-extract.nvim'
-Plug 'https://gitlab.com/__tpb/monokai-pro.nvim'
+Plug 'sainnhe/sonokai'
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
@@ -34,10 +34,7 @@ Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 vim.call('plug#end')
 
 vim.g.mapleader = ','
-vim.g.monokaipro_filter = 'octogon'
-vim.g.monokaipro_italic_functions = true
-vim.g.monokaipro_sidebars = { 'vista_kind', 'packer' }
-vim.g.monokaipro_flat_term = true
+vim.g.sonokai_style = 'atlantis'
 
 vim.opt.syntax = 'enable'
 vim.opt.nu = true
@@ -197,7 +194,7 @@ require('nvim-treesitter.configs').setup {
 require('telescope').load_extension('fzf')
 require('lualine').setup {
     options = {
-        theme = 'monokaipro'
+        theme = 'sonokai'
     }
 }
 
@@ -230,4 +227,4 @@ vim.api.nvim_set_keymap('n', '<leader>rbf', [[ <Cmd>lua require('refactoring').r
 vim.api.nvim_set_keymap('n', '<leader>ri', [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
 
-vim.cmd('colorscheme monokaipro')
+vim.cmd('colorscheme sonokai')
