@@ -25,14 +25,19 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'VonHeikemen/lsp-zero.nvim'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
+Plug 'napmn/react-extract.nvim'
+Plug 'https://gitlab.com/__tpb/monokai-pro.nvim'
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
-Plug 'napmn/react-extract.nvim'
 Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
 vim.call('plug#end')
 
 vim.g.mapleader = ','
+vim.g.monokaipro_filter = 'octogon'
+vim.g.monokaipro_italic_functions = true
+vim.g.monokaipro_sidebars = { 'vista_kind', 'packer' }
+vim.g.monokaipro_flat_term = true
 
 vim.opt.syntax = 'enable'
 vim.opt.nu = true
@@ -192,43 +197,8 @@ require('nvim-treesitter.configs').setup {
 require('telescope').load_extension('fzf')
 require('lualine').setup {
     options = {
-        icons_enabled = true,
-        theme = 'nord',
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
-        disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = false,
-        refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-        }
-    },
-    sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' }
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
-        lualine_z = {}
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {}
+        theme = 'monokaipro'
+    }
 }
 
 require('refactoring').setup({
@@ -260,4 +230,4 @@ vim.api.nvim_set_keymap('n', '<leader>rbf', [[ <Cmd>lua require('refactoring').r
 vim.api.nvim_set_keymap('n', '<leader>ri', [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
 
-vim.cmd('colorscheme rose-pine')
+vim.cmd('colorscheme monokaipro')
