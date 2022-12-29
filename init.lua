@@ -27,6 +27,7 @@ Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
 Plug 'napmn/react-extract.nvim'
 Plug 'sainnhe/sonokai'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
@@ -47,7 +48,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
@@ -61,6 +61,11 @@ vim.opt.isfname:append('@-@')
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = '120'
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.textwidth = 120
+vim.opt.linebreak = true
+vim.opt.wrap = true
+vim.opt.list = true
+
 
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '\'+y<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '\'+p<CR>', { noremap = true })
@@ -227,4 +232,4 @@ vim.api.nvim_set_keymap('n', '<leader>rbf', [[ <Cmd>lua require('refactoring').r
 vim.api.nvim_set_keymap('n', '<leader>ri', [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
 
-vim.cmd('colorscheme sonokai')
+vim.cmd('colorscheme gruvbox')
