@@ -11,6 +11,7 @@ end
 local function tree_sitter_install() pcall(require('nvim-treesitter.install').update { with_sync = true }) end
 
 require('packer').startup(function(use)
+    use 'janko-m/vim-test'
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
@@ -164,7 +165,9 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+    ensure_installed = {
+        'go', 'lua', 'python', 'rust', 'typescript', 'help', 'json', 'yaml', 'javascript', 'html', 'css'
+    },
 
     highlight = { enable = true },
     indent = { enable = true, disable = { 'python' } },
@@ -369,5 +372,3 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '\'+y<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '\'+p<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>Y', '\'+y<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'i' }, '<leader>P', '\'+p<CR>', { noremap = true })
-
-
