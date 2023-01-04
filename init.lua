@@ -28,6 +28,11 @@ require('packer').startup(function(use)
             'folke/neodev.nvim'
         }
     }
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = { 'nvim-tree/nvim-web-devicons' },
+      tag = 'nightly'
+    }
     use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' } }
     use { 'nvim-treesitter/nvim-treesitter', run = tree_sitter_install }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }
@@ -55,24 +60,15 @@ if is_bootstrap then
     return
 end
 
-vim.opt.signcolumn = 'yes'
-vim.opt.mouse = 'a'
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.updatetime = 250
+vim.opt.syntax = 'enable'
+vim.opt.nu = true
+vim.opt.splitbelow = true
+vim.opt.wildmode = { 'list:longest', 'list:full' }
+vim.opt.wildignore = vim.opt.wildignore + { '*.o', '*.obj', '*.dll', '*.exe', '.git', '*.db' }
+vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.colorcolumn = '120'
-vim.opt.termguicolors = true
-vim.opt.splitbelow = true
-vim.opt.background = 'dark'
-vim.opt.nu = true
-vim.opt.wildmode = { 'list:longest', 'list:full' }
-vim.opt.wildignore = { '*.o', '*.obj', '*.dll', '*.exe', '.git', '*.db' }
-vim.opt.relativenumber = true
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.swapfile = false
@@ -83,13 +79,15 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
+vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
 vim.opt.updatetime = 50
+vim.opt.colorcolumn = '120'
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.linebreak = true
-vim.opt.wrap = true
-vim.opt.list = true
+vim.opt.textwidth = 80
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.copilot_no_tab_map = true
@@ -112,6 +110,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     group = highlight_group,
     pattern = '*',
 })
+
+require("nvim-tree").setup()
+require('nvim-web-devicons').setup {
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ color_icons = true;
+ default = true;
+}
+
+require('nvim-web-devicons').get_icons()
 
 
 require('lualine').setup {
@@ -368,7 +382,7 @@ vim.keymap.set('n', '<c-right>', ':bn<cr>')
 vim.keymap.set('n', '<c-right>', ':bp<cr>')
 vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
 vim.keymap.set('n', '<leader>fa', ':EslintFixAll<cr>')
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>y', '\'+y<CR>', { noremap = true })
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>p', '\'+p<CR>', { noremap = true })
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>Y', '\'+y<CR>', { noremap = true })
-vim.keymap.set({ 'n', 'v', 'i' }, '<leader>P', '\'+p<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '\'+y<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '\'+p<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>Y', '\'+y<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>P', '\'+p<CR>', { noremap = true })
