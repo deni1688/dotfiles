@@ -21,7 +21,9 @@ require('packer').startup(function(use)
 
     -- themes
     use "rebelot/kanagawa.nvim"
+    use 'sainnhe/gruvbox-material'
     use { "catppuccin/nvim", as = "catppuccin" }
+
 
     -- lsp
     use {
@@ -267,7 +269,7 @@ require('nvim-web-devicons').setup()
 require('lualine').setup()
 
 vim.cmd [[
-    colorscheme kanagawa
+    colorscheme gruvbox-material
     highlight CopilotSuggestion guifg=#2fb380 ctermfg=8
 ]]
 
