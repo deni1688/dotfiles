@@ -13,6 +13,7 @@ require('packer').startup(function(use)
     use 'janko-m/vim-test'
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-fugitive'
+    use 'airblade/vim-gitgutter'
     use 'tpope/vim-commentary'
     use 'lewis6991/gitsigns.nvim'
     use 'nvim-lualine/lualine.nvim'
