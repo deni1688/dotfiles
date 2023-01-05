@@ -21,26 +21,27 @@ require('packer').startup(function(use)
     use 'j-hui/fidget.nvim'
 
     use {
-      'VonHeikemen/lsp-zero.nvim',
-      requires = {
-        {'neovim/nvim-lspconfig'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-buffer'},
-        {'hrsh7th/cmp-path'},
-        {'saadparwaiz1/cmp_luasnip'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'hrsh7th/cmp-nvim-lua'},
-        {'L3MON4D3/LuaSnip'},
-        {'rafamadriz/friendly-snippets'},
-      }
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
+            { 'L3MON4D3/LuaSnip' },
+            { 'rafamadriz/friendly-snippets' },
+        }
     }
     use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly' }
     use { 'nvim-treesitter/nvim-treesitter', run = tree_sitter_install }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
 
     if is_bootstrap then
@@ -126,6 +127,30 @@ require('nvim-treesitter.configs').setup {
         enable = true,
         additional_vim_regex_highlighting = false,
     },
+
+    textobjects = {
+        select = {
+            enable = true,
+
+            -- Automatically jump forward to textobjects, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
+                ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            },
+            -- You can choose the select mode (default is charwise 'v')
+            selection_modes = {
+                ['@parameter.outer'] = 'v', -- charwise
+                ['@function.outer'] = 'V', -- linewise
+                ['@class.outer'] = '<c-v>', -- blockwise
+            }
+        },
+    },
 }
 
 local lsp = require('lsp-zero')
@@ -147,19 +172,19 @@ lsp.ensure_installed({
 })
 
 lsp.set_preferences({
-  suggest_lsp_servers = true,
-  setup_servers_on_start = true,
-  set_lsp_keymaps = true,
-  configure_diagnostics = true,
-  cmp_capabilities = true,
-  manage_nvim_cmp = true,
-  call_servers = 'local',
-  sign_icons = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  }
+    suggest_lsp_servers = true,
+    setup_servers_on_start = true,
+    set_lsp_keymaps = true,
+    configure_diagnostics = true,
+    cmp_capabilities = true,
+    manage_nvim_cmp = true,
+    call_servers = 'local',
+    sign_icons = {
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = ''
+    }
 })
 
 lsp.configure('sumneko_lua', {
@@ -172,12 +197,12 @@ lsp.configure('sumneko_lua', {
     }
 })
 
-lsp.on_attach(function(client, bufnr) 
-    local opts = {buffer = bufnr, remap = false}
+lsp.on_attach(function(client, bufnr)
+    local opts = { buffer = bufnr, remap = false }
 
     if client.name == "eslint" then
-      vim.cmd.LspStop('eslint')
-      return
+        vim.cmd.LspStop('eslint')
+        return
     end
 
     local nmap = function(keys, func, desc)
@@ -202,25 +227,27 @@ lsp.on_attach(function(client, bufnr)
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    nmap('<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, '[W]orkspace [L]ist Folders')
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_) vim.lsp.buf.format() end, { desc = 'Format current buffer with LSP' })
+    nmap('<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        '[W]orkspace [L]ist Folders')
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_) vim.lsp.buf.format() end,
+        { desc = 'Format current buffer with LSP' })
 end)
 
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
 })
 
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+    mapping = cmp_mappings
 })
 
 lsp.setup()
@@ -230,9 +257,9 @@ require('fidget').setup()
 require("nvim-tree").setup()
 require('nvim-web-devicons').setup()
 require('lualine').setup({
-  options = {
-    theme = 'tokyonight'
-  }
+    options = {
+        theme = 'tokyonight'
+    }
 })
 
 vim.cmd [[
@@ -273,7 +300,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>p', '\'+p<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>Y', '\'+y<CR>', { noremap = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>P', '\'+p<CR>', { noremap = true })
 
--- git mappings 
+-- git mappings
 vim.keymap.set('n', '<leader>ga', ':Gwrite<cr>')
 vim.keymap.set('n', '<leader>gc', ':Git commit<cr>')
 vim.keymap.set('n', '<leader>gsh', ':Git push<cr>')
