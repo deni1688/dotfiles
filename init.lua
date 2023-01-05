@@ -198,7 +198,6 @@ lsp.configure('sumneko_lua', {
 })
 
 lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
 
     if client.name == "eslint" then
         vim.cmd.LspStop('eslint')
@@ -210,7 +209,9 @@ lsp.on_attach(function(client, bufnr)
             desc = 'LSP: ' .. desc
         end
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        local opts = { buffer = bufnr, remap = false, desc = desc }
+
+        vim.keymap.set('n', keys, func, opts)
     end
 
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
