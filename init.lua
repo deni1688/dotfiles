@@ -207,7 +207,7 @@ lsp.configure('sumneko_lua', {
     }
 })
 
-lsp.configure('eslint-lsp', {
+lsp.configure('eslint', {
     filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
     init_options = {
         nodePath = vim.fn.exepath 'node',
