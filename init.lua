@@ -178,6 +178,7 @@ lsp.ensure_installed({
     "dockerls",
     "sumneko_lua",
     "cssls",
+    "eslint",
 })
 
 lsp.set_preferences({
@@ -206,13 +207,19 @@ lsp.configure('sumneko_lua', {
     }
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.configure('eslint-lsp', {
+    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+    init_options = {
+        nodePath = vim.fn.exepath 'node',
+        packageManager = 'yarn',
+        yarn = {
+            enable = true,
+            path = vim.fn.exepath 'yarn',
+        },
+    },
+})
 
-    if client.name == "eslint" then
-        vim.cmd.LspStop('eslint')
-        return
-    end
-
+lsp.on_attach(function(_, bufnr)
     local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
