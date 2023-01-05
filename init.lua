@@ -16,10 +16,14 @@ require('packer').startup(function(use)
     use 'tpope/vim-commentary'
     use 'lewis6991/gitsigns.nvim'
     use 'nvim-lualine/lualine.nvim'
-    use "rebelot/kanagawa.nvim"
     use 'mbbill/undotree'
     use 'j-hui/fidget.nvim'
 
+    -- themes
+    use "rebelot/kanagawa.nvim"
+    use { "catppuccin/nvim", as = "catppuccin" }
+
+    -- lsp
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -36,12 +40,18 @@ require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+
+    -- treesitter
     use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly' }
     use { 'nvim-treesitter/nvim-treesitter', run = tree_sitter_install }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }
+
+    -- telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
     use { 'nvim-telescope/telescope-fzf-native.nvim',
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+
+    -- go
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
 
     if is_bootstrap then
@@ -88,9 +98,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.copilot_no_tab_map = true
-
-vim.api.nvim_set_keymap('i', '<c-\\>', 'copilot#Accept(\'<cr>\')', { silent = true, expr = true })
 
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -257,11 +264,7 @@ require('gitsigns').setup()
 require('fidget').setup()
 require("nvim-tree").setup()
 require('nvim-web-devicons').setup()
-require('lualine').setup({
-    options = {
-        theme = 'tokyonight'
-    }
-})
+require('lualine').setup()
 
 vim.cmd [[
     colorscheme kanagawa
@@ -303,6 +306,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>P', '\'+p<CR>', { noremap = true })
 
 -- git mappings
 vim.keymap.set('n', '<leader>ga', ':Gwrite<cr>')
+vim.keymap.set('n', '<leader>gaa', ':Git add .<cr>')
 vim.keymap.set('n', '<leader>gc', ':Git commit<cr>')
 vim.keymap.set('n', '<leader>gsh', ':Git push<cr>')
 vim.keymap.set('n', '<leader>gll', ':Git pull<cr>')
