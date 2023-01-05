@@ -227,9 +227,13 @@ lsp.setup()
 
 require('gitsigns').setup()
 require('fidget').setup()
-require('lualine').setup()
 require("nvim-tree").setup()
 require('nvim-web-devicons').setup()
+require('lualine').setup({
+  options = {
+    theme = 'tokyonight'
+  }
+})
 
 vim.cmd [[
     colorscheme kanagawa
@@ -256,6 +260,9 @@ vim.keymap.set('n', '<c-right>', ':bp<cr>')
 -- toggle mappings
 vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
 vim.keymap.set('n', '<F6>', ':NvimTreeToggle<cr>')
+
+-- find file in parent directory
+vim.keymap.set('n', '<F7>', ':NvimTreeFindFile<cr>')
 
 -- eslint fix
 vim.keymap.set('n', '<leader>fa', ':EslintFixAll<cr>')
