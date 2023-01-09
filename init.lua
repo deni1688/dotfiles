@@ -296,7 +296,7 @@ vim.keymap.set('v', '{', ':m \'>+1<cr>gv=gv')
 vim.keymap.set('v', '}', ':m \'<-2<cr>gv=gv')
 -- move between splits
 vim.keymap.set('n', '<c-right>', ':bn<cr>')
-vim.keymap.set('n', '<c-right>', ':bp<cr>')
+vim.keymap.set('n', '<c-left>', ':bp<cr>')
 
 -- toggle mappings
 vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
