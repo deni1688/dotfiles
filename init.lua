@@ -329,10 +329,4 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
-
-local function search_replace()
-    return ':%s///g<left><left><left>'
-end
-
-vim.keymap.set({'v', 'n'}, '<leader>r', search_replace())
+vim.keymap.set({'v', 'n'}, '<leader>r',  ':%s///g<left><left><left>')
