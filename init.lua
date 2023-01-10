@@ -141,24 +141,54 @@ require('nvim-treesitter.configs').setup {
     textobjects = {
         select = {
             enable = true,
-
-            -- Automatically jump forward to textobjects, similar to targets.vim
             lookahead = true,
-
             keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
                 ["ac"] = "@class.outer",
-                -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
                 ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
             },
-            -- You can choose the select mode (default is charwise 'v')
             selection_modes = {
                 ['@parameter.outer'] = 'v', -- charwise
                 ['@function.outer'] = 'V', -- linewise
                 ['@class.outer'] = '<c-v>', -- blockwise
             }
+        },
+        move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+                [']m'] = '@function.outer',
+                [']]'] = '@class.outer',
+            },
+            goto_next_end = {
+                [']M'] = '@function.outer',
+                [']['] = '@class.outer',
+            },
+            goto_previous_start = {
+                ['[m'] = '@function.outer',
+                ['[['] = '@class.outer',
+            },
+            goto_previous_end = {
+                ['[M'] = '@function.outer',
+                ['[]'] = '@class.outer',
+            },
+        },
+        lsp_interop = {
+            enable = true,
+            peek_definition_code = {
+                ["df"] = "@function.outer",
+                ["dF"] = "@class.outer",
+            },
+        },
+        swap = {
+            enable = true,
+            swap_next = {
+                ["<leader>a"] = "@parameter.inner",
+            },
+            swap_previous = {
+                ["<leader>A"] = "@parameter.inner",
+            },
         },
     },
 }
@@ -301,6 +331,7 @@ vim.keymap.set('n', '<c-left>', ':bp<cr>')
 -- toggle mappings
 vim.keymap.set('n', '<F5>', ':UndotreeToggle<cr>')
 vim.keymap.set('n', '<F6>', ':NvimTreeToggle<cr>')
+vim.keymap.set('n', '<F7>', ':NvimTreeFocus<cr>')
 
 -- find file in parent directory
 vim.keymap.set('n', '<F7>', ':NvimTreeFindFile<cr>')
