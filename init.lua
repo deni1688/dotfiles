@@ -306,10 +306,6 @@ require("nvim-tree").setup()
 require('nvim-web-devicons').setup()
 require('lualine').setup()
 
-vim.cmd [[
-    colorscheme gruvbox-material
-    highlight CopilotSuggestion guifg=#2fb380 ctermfg=8
-]]
 
 vim.diagnostic.config({
     virtual_text = true,
@@ -361,3 +357,14 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set({'v', 'n'}, '<leader>r',  ':%s///g<left><left><left>')
+
+local theme = os.getenv('NVIM_THEME')
+
+if theme == nil or theme == '' then
+    theme = 'gruvbox-material'
+end
+
+vim.cmd ([[ colorscheme ]] .. theme .. [[ 
+    set background=dark
+    highlight CopilotSuggestion guifg=#2fb380 ctermfg=8
+]])
