@@ -23,7 +23,8 @@ require('packer').startup(function(use)
     -- themes
     use "rebelot/kanagawa.nvim"
     use 'sainnhe/gruvbox-material'
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use 'NLKNguyen/papercolor-theme'
+    use({ 'rose-pine/neovim', as = 'rose-pine' })
 
 
     -- lsp
@@ -70,6 +71,7 @@ if is_bootstrap then
     print '=================================='
     return
 end
+
 
 vim.opt.syntax = 'enable'
 vim.opt.nu = true
@@ -207,7 +209,6 @@ lsp.ensure_installed({
     "jsonls",
     "yamlls",
     "dockerls",
-    "sumneko_lua",
     "cssls",
     "eslint",
 })
@@ -364,7 +365,9 @@ if theme == nil or theme == '' then
     theme = 'gruvbox-material'
 end
 
+
 vim.cmd ([[ colorscheme ]] .. theme .. [[ 
     set background=dark
     highlight CopilotSuggestion guifg=#2fb380 ctermfg=8
 ]])
+
