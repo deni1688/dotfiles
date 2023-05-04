@@ -21,11 +21,11 @@ require('packer').startup(function(use)
     use 'j-hui/fidget.nvim'
 
     -- themes
-    use "rebelot/kanagawa.nvim"
+    use 'rebelot/kanagawa.nvim'
     use 'sainnhe/gruvbox-material'
     use 'NLKNguyen/papercolor-theme'
     use({ 'rose-pine/neovim', as = 'rose-pine' })
-
+    use 'loctvl842/monokai-pro.nvim'
 
     -- lsp
     use {
@@ -306,6 +306,9 @@ require('fidget').setup()
 require("nvim-tree").setup()
 require('nvim-web-devicons').setup()
 require('lualine').setup()
+require("monokai-pro").setup({
+    filter = "spectrum",
+})
 
 
 vim.diagnostic.config({
