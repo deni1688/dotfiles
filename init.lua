@@ -21,11 +21,10 @@ require('packer').startup(function(use)
     use 'j-hui/fidget.nvim'
 
     -- themes
-    use 'rebelot/kanagawa.nvim'
     use 'sainnhe/gruvbox-material'
-    use 'NLKNguyen/papercolor-theme'
-    use({ 'rose-pine/neovim', as = 'rose-pine' })
     use 'loctvl842/monokai-pro.nvim'
+    use 'sainnhe/sonokai'
+    use 'Shatur/neovim-ayu'
 
     -- lsp
     use {
@@ -95,9 +94,9 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = '120'
+vim.opt.colorcolumn = '180'
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.textwidth = 80
+vim.opt.textwidth = 180
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -115,9 +114,11 @@ require('telescope').setup()
 require('telescope').load_extension('fzf')
 
 local builtin = require('telescope.builtin')
+local utils = require('telescope.utils')
 vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sw', function() builtin.grep_string({search = vim.fn.expand('<cword>')}) end, { desc = '[S]earch current [W]ord'})
+vim.keymap.set('n', '<leader>\\', function() builtin.grep_string({cwd = utils.buffer_dir(), search = vim.fn.getreg('*')}) end, { desc = '[S]earch current [W]ord'})
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
@@ -211,6 +212,7 @@ lsp.ensure_installed({
     "dockerls",
     "cssls",
     "eslint",
+    "omnisharp",
 })
 
 lsp.set_preferences({
@@ -307,7 +309,12 @@ require("nvim-tree").setup()
 require('nvim-web-devicons').setup()
 require('lualine').setup()
 require("monokai-pro").setup({
-    filter = "spectrum",
+    filter = "classic",
+})
+
+require('ayu').setup({
+    mirage = true, 
+    overrides = {},
 })
 
 
@@ -361,6 +368,9 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set({'v', 'n'}, '<leader>r',  ':%s///g<left><left><left>')
+-- keymap for moving code up and down using ctrl+shift + arrow keys
+vim.keymap.set('v', '<c-s-up>', ':m \'<-2<cr>gv=gv')
+vim.keymap.set('v', '<c-s-down>', ':m \'>+1<cr>gv=gv')
 
 local theme = os.getenv('NVIM_THEME')
 
